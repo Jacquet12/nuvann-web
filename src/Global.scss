@@ -1,0 +1,32 @@
+:root {
+  // font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  --background-principal: #E5E5E5;
+  --background-segundary: #FFFFFF;
+
+  --blue-principal-000052: #000052;
+}
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+
+  &::-webkit-scrollbar-track {
+    width: 6px;
+    height: 6px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: #fff;
+  }
+
+  &::-webkit-scrollbar-thumb{
+    background-color: gray;
+    border-radius: 20px;
+    border: 1px solid #ececec;
+  }
+}
+
+body {
+  background: var(--background-principal);
+}

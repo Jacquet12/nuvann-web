@@ -1,9 +1,10 @@
 import React from 'react'
+import {PageDefault} from '../../components/PageDefault'
 
 export default function Home(){
   return (
-    <div>
+      <PageDefault>
         Welcome to Nuvann
-    </div>
+      </PageDefault>
   )
 }
