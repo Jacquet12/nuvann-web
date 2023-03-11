@@ -1,5 +1,6 @@
 import React from 'react'
 import { Footer } from '../Footer';
+import { Navbar } from '../Navbar';
 
 import './styles.scss'
 
@@ -9,7 +10,7 @@ interface PageDefaultProps {
 export const PageDefault: React.FC<PageDefaultProps> = ({ children }) =>{
   return (
     <div>
-        <h1>Navbar</h1>
+        <h1><Navbar /></h1>
 
         <div className='page_default_main_container'>
             {children}

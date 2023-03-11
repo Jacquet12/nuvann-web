@@ -1,10 +1,10 @@
 .footer_principal_container {
-    background-color: var(--background-segundary);
+    background-color: var(--background-white);
 
     height: 330px;
     
-    .footer_separator {
-        color: var(--blue-principal-000052);
+    hr {
+        border: 0.1rem solid var(--blue-principal-000052);
         width: 100%;
     }
     
