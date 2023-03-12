@@ -8,14 +8,15 @@ import Title from "../Title";
 interface SliderProps {
   slides: any;
   title: string;
+  itemToShow: number;
 }
 
-const ProductSlide: React.FC<SliderProps> = ({ slides, title }) => {
+const ProductSlide: React.FC<SliderProps> = ({ slides, title, itemToShow }) => {
   const settings = {
     dots: false,
     infinite: false,
     speed: 500,
-    slidesToShow: 4,
+    slidesToShow: itemToShow,
     slidesToScroll: 4,
     initialSlide: 0,
     responsive: [
@@ -58,16 +59,18 @@ const ProductSlide: React.FC<SliderProps> = ({ slides, title }) => {
           <div className="product-grid3" key={index}>
             <div className="product-image3">
                 <a href="">
-                  <img className="pic-1" src={product.img} alt={product.title}/>
-                  <img className="pic-2" src={product.img1} alt={product.title}/>
+                  {
+                    product?.images?.map((img: string, index:number) =>(
+                      <img key={index} className={`pic-${index + 1}`} src={img} alt={product.name}/>
+                    ))
+                  }
                 </a>
                 {/* <span className="product-new-label">New</span> */}
             </div>
             <div className="product-content">
-              <h3 className="title"> {product.title}</h3>
-              <div className="price">
-                  $ {product.price}
-              </div>
+              <h3 className="title"> {product.name}</h3>
+              <h3 className="price">{product.prices.formatted}</h3>
+              <h3 className="description"> {(product.description && product.description.length > 25) ? product.description.substring(0,25)+'...' : product.description}</h3>
             </div>
           </div>
         ))}

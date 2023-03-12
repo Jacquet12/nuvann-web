@@ -1,64 +1,32 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import FullWidthCarousel from '../../components/fullWidthCarousel'
 import { PageDefault } from '../../components/PageDefault'
 import ProductSlide from '../../components/ProductSlide';
+import { useProduct } from '../../context/productContext';
 import './styles.scss'
 
 export default function Home(){
+  const {products, getProducts} = useProduct();
   const images = [
-    "https://via.placeholder.com/1250x400/000052/ffffff?text=Slide+1",
-    "https://via.placeholder.com/1250x400/00ff00/ffffff?text=Slide+2",
-    "https://via.placeholder.com/1250x400/0000ff/ffffff?text=Slide+3",
-    "https://via.placeholder.com/1250x400/000052/ffffff?text=Slide+4",
-    "https://via.placeholder.com/1250x400/0000ff/ffffff?text=Slide+5",
+    "https://via.placeholder.com/1250x250/000052/ffffff?text=Slide+1",
+    "https://via.placeholder.com/1250x250/00ff00/ffffff?text=Slide+2",
+    "https://via.placeholder.com/1250x250/0000ff/ffffff?text=Slide+3",
+    "https://via.placeholder.com/1250x250/000052/ffffff?text=Slide+4",
+    "https://via.placeholder.com/1250x250/0000ff/ffffff?text=Slide+5",
   ];
-
-  const HomeProduct: any = [
-    {
-      title: "Mango",
-      price: 15.00,
-      img:"https://via.placeholder.com/400x400/000052/ffffff?text=Slide+1",
-      img1: "https://via.placeholder.com/1250x400/00ff00/ffffff?text=Slide+2"
-    },
-    {
-      title: "Prestige",
-      price: 16.00,
-      img: "https://via.placeholder.com/400x400/000052/ffffff?text=Slide+1",
-      img1: "https://via.placeholder.com/400x400/00ff00/ffffff?text=Slide+2"
-    }, {
-      title: "Dress",
-      price: 17.00,
-      img: "https://via.placeholder.com/400x400/000052/ffffff?text=Slide+1",
-      img1: "https://via.placeholder.com/400x400/00ff00/ffffff?text=Slide+2"
-    }, {
-      title: "Short",
-      price: 18.00,
-      img: "https://via.placeholder.com/400x400/000052/ffffff?text=Slide+1",
-      img1: "https://via.placeholder.com/400x400/00ff00/ffffff?text=Slide+2"
-    }, {
-      title: "Teste",
-      price: 19.00,
-      img: "https://via.placeholder.com/400x400/000052/ffffff?text=Slide+1",
-      img1: "https://via.placeholder.com/400x400/00ff00/ffffff?text=Slide+2"
-    }, {
-      title: "TESTE 2",
-      price: 20.00,
-      img: "https://via.placeholder.com/400x400/000052/ffffff?text=Slide+1",
-      img1: "https://via.placeholder.com/400x400/00ff00/ffffff?text=Slide+2"
-    }, {
-      title: "Mango2",
-      price: 21.00,
-      img: "https://via.placeholder.com/400x400/000052/ffffff?text=Slide+1",
-      img1: "https://via.placeholder.com/400x400/00ff00/ffffff?text=Slide+2"
-    },
-  ]
+  useEffect(() => {
+    getProducts();
+  }, [])
+  
   return (
       <PageDefault>
         <FullWidthCarousel images={images} autoSlideInterval={5000}/>
         <div className='home_product_container'>
-          <ProductSlide  slides={HomeProduct} title="Nouvo Produi"/>
-          <ProductSlide  slides={HomeProduct} title="Enòmatik"/>
-          <ProductSlide  slides={HomeProduct} title="Kosmetik"/>
+          <ProductSlide itemToShow={6}  slides={products} title="Nouvo Produi"/>
+          <ProductSlide  itemToShow={6} slides={products} title="Enfòmatik"/>
+          <ProductSlide itemToShow={6}  slides={products} title="Kosmetik"/>
+          <ProductSlide itemToShow={6}  slides={products} title="Pou Bouzen"/>
+          <ProductSlide itemToShow={6}  slides={products} title="Pou Vagabon"/>
         </div>
       </PageDefault>
   )

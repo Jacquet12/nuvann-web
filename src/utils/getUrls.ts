@@ -1,13 +1,13 @@
 
 const Urls: any = {
     dev: {
-        NUVANN_API: 'https://nuvannapi.com/'
+        NUVANN_API: 'https://nuvannapi.com/api'
     },
     prod: {
-        NUVANN_API: 'https://nuvannapi.com/'
+        NUVANN_API: 'https://nuvannapi.com/api'
     }
 }
 
-const ENV: string = process.env.REACT_MODE_API || 'dev'
+const ENV: string = 'dev'
 export default Urls[ENV];
 
