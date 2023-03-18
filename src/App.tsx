@@ -1,5 +1,6 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
+import { Router } from 'react-router-dom'
+import { AuthProvider } from './context/authContext'
 import ProductProvider from './context/productContext'
 import './Global.scss'
 import {PrincipalRoutes} from './routes/routes'
@@ -7,7 +8,9 @@ import {PrincipalRoutes} from './routes/routes'
 function App() {
   return (
     <ProductProvider>
-      <PrincipalRoutes />
+      <AuthProvider >
+          <PrincipalRoutes /> 
+      </AuthProvider>
     </ProductProvider>
   )
 }

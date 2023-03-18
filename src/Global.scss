@@ -5,6 +5,8 @@
   --background-yellow: #FFC107;
 
   --blue-principal-000052: #000052;
+
+--blue-selected-text: #0094FF;
 }
 
 *{
@@ -31,3 +33,5 @@
 body {
   background: var(--background-principal);
 }
+
+// text

@@ -4,6 +4,7 @@ import cartLogo from "../../assets/cartIcon.svg"
 import { FiUser } from "react-icons/fi"
 import './styles.scss'
 import InputSearch from '../InputSearch'
+import { Link } from 'react-router-dom'
 
 export const Navbar: React.FC = () => {
   // const [searchResults, setSearchResults] = useState([]);
@@ -23,11 +24,15 @@ export const Navbar: React.FC = () => {
           </div>
           <ul>
             <li>
-              <button><FiUser/> konekte | Enskri</button>
+              <Link to="/login" >
+                <button><FiUser/> konekte | Enskri</button>
+              </Link>
             </li>
 
             <li>
-              <img src={cartLogo} alt="cartIcon" />
+              <Link to="/cart">
+                <img src={cartLogo} alt="cartIcon" />
+              </Link>
             </li>
           </ul>
         </div>
@@ -37,7 +42,6 @@ export const Navbar: React.FC = () => {
                 <li>Pwomotion</li>
                 <li>Kategori ^</li>
                 <li>Vann</li>
-                <li>About</li>
             </ul>
         </nav>
     </div>
