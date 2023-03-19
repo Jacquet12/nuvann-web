@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { FaFacebook, FaGoogle} from 'react-icons/fa'
 import './styles.scss'
 import { FormLogin } from './FormLogin'
-import { FormSignUp } from './FormSignUp'
+import { FormSignUp } from '../Signup/FormSignUp'
 
 export default function Login() {
   const [showSignUp, setShowSignUp] = useState(false)
