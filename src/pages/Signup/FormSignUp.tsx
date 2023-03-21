@@ -27,6 +27,7 @@ export const FormSignUp = () => {
           backgroundColor='#000052'
           textColor='#ffff'
           width={150}
+          height={35}
           isLoading={!!loading}
           type="submit"
         >

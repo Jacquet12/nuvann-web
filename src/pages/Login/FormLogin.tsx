@@ -16,6 +16,7 @@ export const FormLogin = () => {
           backgroundColor='#000052'
           textColor='#ffff'
           width={150}
+          height={35}
         >
             Konekte
           </CustomButton>
