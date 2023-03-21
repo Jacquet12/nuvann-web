@@ -1,0 +1,98 @@
+.login_container {
+    background-image: url('../../assets/loginbackground.png');
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    .login_card {
+        
+        padding: 25px 32px 25px 32px;
+        width:364px;
+        height: 85%;
+        border-radius: 3%;
+        background-color: rgb(248,248,250);
+        box-shadow: 0px 0px 12px #00000052;
+
+
+        h3 {
+            font-family: 'Roboto';
+            font-style: normal;
+            font-weight: 400;
+            font-size: 24px;
+            line-height: 28px;
+            text-align: center;
+            
+            color: var(--blue-principal-000052);
+            margin-bottom: 16px;
+            
+        }
+        
+        .login_tabs {
+            display:flex;
+            justify-content: space-around;
+             
+            .login__separator {
+                width: 1px;
+                height:23px;
+                background: #000000;
+            }
+            
+            p {
+                font-family: 'Roboto';
+                font-style: normal;
+                font-weight: 400;
+                font-size: 14px;
+                line-height: 16px;
+                
+                color: var(--blue-selected-text);
+                text-decoration: none;
+                cursor: pointer;
+            }
+        }
+        
+        .social_media_button {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin:2% 0 6% 0 ;
+            
+            button{
+                margin-top:3% ;
+                width: 83%;
+                // width: 249px;
+                height: 38px;
+                
+                background: var(--blue-principal-000052);
+                color: var(--background-white);
+                border-radius: 3px;
+                
+                cursor: pointer;
+            }
+        }
+        
+        .login_content {
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+
+            a {
+                float: left;
+                padding:15px 0 0 22px;
+
+                font-family: 'Roboto';
+                font-style: normal;
+                font-weight: 400;
+                font-size: 14px;
+                line-height: 12px;
+                text-decoration: none;
+                color: #65BEFF;
+            }
+
+        }
+    }
+}

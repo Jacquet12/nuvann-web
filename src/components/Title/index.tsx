@@ -5,7 +5,7 @@ import './styles.scss'
 interface TitleProps {
     title: string;
     className?: string;
-  }
+}
 
 
 const Title: React.FC<TitleProps> =({title, className}) =>{
