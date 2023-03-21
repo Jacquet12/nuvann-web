@@ -4,15 +4,18 @@ import { PageDefault } from '../../components/PageDefault'
 import ProductSlide from '../../components/ProductSlide';
 import { useProduct } from '../../context/productContext';
 import './styles.scss'
+import slide1 from '../../assets/fullSlideHome.svg'
+import slide2 from '../../assets/slide2.svg'
 
 export default function Home(){
   const {products, getProducts} = useProduct();
   const images = [
-    "https://via.placeholder.com/1250x250/000052/ffffff?text=Slide+1",
-    "https://via.placeholder.com/1250x250/00ff00/ffffff?text=Slide+2",
-    "https://via.placeholder.com/1250x250/0000ff/ffffff?text=Slide+3",
-    "https://via.placeholder.com/1250x250/000052/ffffff?text=Slide+4",
-    "https://via.placeholder.com/1250x250/0000ff/ffffff?text=Slide+5",
+    slide1,
+    slide2,
+    slide1,
+    slide2,
+    slide1,
+    slide2,
   ];
   useEffect(() => {
     getProducts();
