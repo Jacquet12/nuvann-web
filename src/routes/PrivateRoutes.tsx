@@ -2,13 +2,14 @@ import React from "react"
 import { Navigate, Route } from "react-router-dom";
 import { useAuthContext } from "../context/authContext";
 interface PrivateRouteProps {
-  path: string;
-  element: React.ReactElement;
+  path?: string;
+  element: React.ReactElement<any>;
 }
 
 
 const PrivateRoute = ({ path, element }: PrivateRouteProps ) => {
   const { isAuthenticated } = useAuthContext();
+  console.log("isAuthenticated", isAuthenticated)
   return isAuthenticated ? (
     <Route path={path} element={element} />
   ) : (

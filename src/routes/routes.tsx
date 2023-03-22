@@ -9,7 +9,7 @@ export function PrincipalRoutes() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
-        {/* <Route path="/cart" element={<PrivateRoute element={<Cart />} />} /> */}
+        <Route path="/cart" element={<PrivateRoute element={<Cart />} />} />
         {/* <PrivateRoute path="/cart" element={<Cart />}/> */}
       </Routes>
   );

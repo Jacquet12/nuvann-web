@@ -81,14 +81,15 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       const response = await nuvannApi.post("/auth/login", data)
       const {user_info, access_token} = response.data.info;
       // successToast(response.data.message);
-      navigate("/")
       localStorage.setItem('@nuvann:token', access_token);
       localStorage.setItem('@nuvann:user', JSON.stringify(user_info));
+      navigate("/")
       setData({
         user : user_info,
         token: access_token
       });
-
+      setIsAuthenticated(true);
+      
     } catch (error: any) {
       const message: string = error.response.data.message
       errorToast(message)
