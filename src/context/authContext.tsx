@@ -38,6 +38,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [loading, setLoading] = useState<Boolean>(false);
   const {successToast, errorToast}= useToast();
 
+  const navigate = useNavigate();
+
   const [data, setData] = useState<AuthState>(() => {
     const token = localStorage.getItem('@nuvann:token');
     const user =localStorage.getItem('@nuvann:user');
@@ -79,7 +81,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       const response = await nuvannApi.post("/auth/login", data)
       const {user_info, access_token} = response.data.info;
       // successToast(response.data.message);
-      <Navigate to="/" replace/>
+      navigate("/")
       localStorage.setItem('@nuvann:token', access_token);
       localStorage.setItem('@nuvann:user', JSON.stringify(user_info));
       setData({
