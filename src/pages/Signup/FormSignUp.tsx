@@ -14,7 +14,7 @@ export const FormSignUp = () => {
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
-    signUp(email, password, name);
+    signUp(name,email, password);
   };
 
   return (
