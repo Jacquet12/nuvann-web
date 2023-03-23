@@ -1,34 +1,55 @@
 import { createContext, useContext, useState } from "react";
+import { Navigate, redirect, useNavigate } from "react-router-dom";
 import { nuvannApi } from "../services/apiRequest";
 import { useToast } from "./useToast";
 
 interface AuthContextValue {
-  isAuthenticated: boolean;
   loading: Boolean
-  login: () => void;
+  signUp: (name: string,email: string, password: string,) => void;
+  signIn: (email: string, password: string,) => void;
   logout: () => void;
-  signUp: ( email: string, name: string, password: string,) => void;
+  user: UserData;
+  token: string
 }
 
-const AuthContext = createContext<AuthContextValue>({
-  isAuthenticated: false,
-  loading: false,
-  login: () => {},
-  logout: () => {},
-  signUp: () => {}
-});
+const AuthContext = createContext<AuthContextValue>({} as AuthContextValue);
 
 interface signUpBodyInterface {
-  email: string;
   name: string;
+  email: string;
   password: string;
+}
+interface UserData {
+  id: string | number;
+  name: string;
+  email: string;
+}
+
+interface AuthState {
+  token: string;
+  user: UserData;
 }
 
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [loading, setLoading] = useState<Boolean>(false);
   const {successToast, errorToast}= useToast();
+
+  const navigate = useNavigate();
+
+  const [data, setData] = useState<AuthState>(() => {
+    const token = localStorage.getItem('@nuvann:token');
+    const user =localStorage.getItem('@nuvann:user');
+
+    if(token && user) {
+      return {
+        token,
+        user: JSON.parse(user)
+      }
+    }
+    return {} as AuthState
+
+  })
 
   const signUp = async (name: string, email: string, password:string) => {
     setLoading(true)
@@ -37,26 +58,56 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     }
     try {
       const response = await nuvannApi.post("/users", data)
-      console.log('response',response)
+      successToast(response.data.message)
+      window.location.reload()
     } catch (error: any) {
       const message: string = error.response.data.message
-      console.log(message)
       errorToast(message)
     } finally{
       setLoading(false)
     }
   }
-  
-  function login() {
-    setIsAuthenticated(true);
+
+  const signIn = async(email:string, password: string) => {
+    setLoading(true)
+    const data = {
+      email,
+      password
+    }
+    try {
+      const response = await nuvannApi.post("/auth/login", data)
+      const {user_info, access_token} = response.data.info;
+      // successToast(response.data.message);
+      localStorage.setItem('@nuvann:token', access_token);
+      localStorage.setItem('@nuvann:user', JSON.stringify(user_info));
+      navigate("/")
+      setData({
+        user : user_info,
+        token: access_token
+      });
+    } catch (error: any) {
+      const message: string = error.response.data.message
+      errorToast(message)
+    } finally{
+      setLoading(false)
+    }
   }
 
-  function logout() {
-    setIsAuthenticated(false);
+  const logout = async() => {
+    try {
+      const response = await nuvannApi.get('auth/logout');
+      localStorage.removeItem('@nuvann:token');
+      localStorage.removeItem('@nuvann:user');
+      setData({} as AuthState)
+      navigate("/")
+    } catch (error: any) {
+      const message: string = error.response.data.message
+      errorToast(message)
+    }
   }
   
   return (
-    <AuthContext.Provider value={{ isAuthenticated, login, logout, signUp, loading}}>
+    <AuthContext.Provider value={{ user: data.user, token: data.token, signUp, signIn, loading, logout}}>
       {children}
     </AuthContext.Provider>
   );

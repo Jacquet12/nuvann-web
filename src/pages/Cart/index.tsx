@@ -1,9 +1,10 @@
 import React from 'react'
+import { PageDefault } from '../../components/PageDefault'
 
 export const Cart = () => {
   return (
-    <>
-    <div>index</div>
-    </>
+    <PageDefault>
+      <div>Cart Page</div>
+    </PageDefault>
   )
 }

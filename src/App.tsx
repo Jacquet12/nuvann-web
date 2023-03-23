@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Router } from 'react-router-dom'
+import { BrowserRouter, Router } from 'react-router-dom'
 import { AuthProvider } from './context/authContext'
 import ProductProvider from './context/productContext'
 import ToastProvider from './context/useToast'
@@ -10,6 +10,7 @@ import {PrincipalRoutes} from './routes/routes'
 function App() {
 
   return (
+    <BrowserRouter>
     <ToastProvider >
       <ProductProvider>
           <AuthProvider >
@@ -17,6 +18,7 @@ function App() {
           </AuthProvider>
         </ProductProvider>
     </ToastProvider> 
+    </BrowserRouter>
   )
 }
 
