@@ -4,10 +4,7 @@ import { nuvannApi } from "../services/apiRequest";
 import { useToast } from "./useToast";
 
 interface AuthContextValue {
-  isAuthenticated: boolean;
   loading: Boolean
-  login: () => void;
-  logout: () => void;
   signUp: (name: string,email: string, password: string,) => void;
   signIn: (email: string, password: string,) => void;
   user: UserData;
@@ -34,7 +31,6 @@ interface AuthState {
 
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [loading, setLoading] = useState<Boolean>(false);
   const {successToast, errorToast}= useToast();
 
@@ -88,8 +84,6 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         user : user_info,
         token: access_token
       });
-      setIsAuthenticated(true);
-      
     } catch (error: any) {
       const message: string = error.response.data.message
       errorToast(message)
@@ -98,16 +92,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     }
   }
   
-  function login() {
-    setIsAuthenticated(true);
-  }
-
-  function logout() {
-    setIsAuthenticated(false);
-  }
-  
   return (
-    <AuthContext.Provider value={{ user: data.user, token: data.token, isAuthenticated, login, logout, signUp, signIn, loading}}>
+    <AuthContext.Provider value={{ user: data.user, token: data.token, signUp, signIn, loading}}>
       {children}
     </AuthContext.Provider>
   );
