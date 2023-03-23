@@ -7,6 +7,7 @@ interface AuthContextValue {
   loading: Boolean
   signUp: (name: string,email: string, password: string,) => void;
   signIn: (email: string, password: string,) => void;
+  logout: () => void;
   user: UserData;
   token: string
 }
@@ -91,9 +92,22 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       setLoading(false)
     }
   }
+
+  const logout = async() => {
+    try {
+      const response = await nuvannApi.get('auth/logout');
+      localStorage.removeItem('@nuvann:token');
+      localStorage.removeItem('@nuvann:user');
+      setData({} as AuthState)
+      navigate("/")
+    } catch (error: any) {
+      const message: string = error.response.data.message
+      errorToast(message)
+    }
+  }
   
   return (
-    <AuthContext.Provider value={{ user: data.user, token: data.token, signUp, signIn, loading}}>
+    <AuthContext.Provider value={{ user: data.user, token: data.token, signUp, signIn, loading, logout}}>
       {children}
     </AuthContext.Provider>
   );
