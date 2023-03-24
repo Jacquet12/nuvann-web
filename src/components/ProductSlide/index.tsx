@@ -60,7 +60,7 @@ const ProductSlide: React.FC<SliderProps> = ({ slides, title, itemToShow }) => {
             <div className="product-image3">
                 <a href="">
                   {
-                    product?.images?.map((img: string, index:number) =>(
+                    product?.images?.slice(0, 2).map((img: string, index:number) =>(
                       <img key={index} className={`pic-${index + 1}`} src={img} alt={product.name}/>
                     ))
                   }
