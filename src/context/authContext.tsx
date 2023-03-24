@@ -1,5 +1,5 @@
 import { createContext, useContext, useState } from "react";
-import { Navigate, redirect, useNavigate } from "react-router-dom";
+import { Navigate, redirect, useLocation, useNavigate } from "react-router-dom";
 import { nuvannApi } from "../services/apiRequest";
 import { useToast } from "./useToast";
 
@@ -34,6 +34,8 @@ interface AuthState {
 export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [loading, setLoading] = useState<Boolean>(false);
   const {successToast, errorToast}= useToast();
+
+  const location = useLocation()
 
   const navigate = useNavigate();
 
@@ -80,7 +82,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       // successToast(response.data.message);
       localStorage.setItem('@nuvann:token', access_token);
       localStorage.setItem('@nuvann:user', JSON.stringify(user_info));
-      navigate("/")
+      navigate(location.state?.from || "/");
       setData({
         user : user_info,
         token: access_token
