@@ -3,7 +3,7 @@
     background: var(--background-white);
 
     .nav_header {
-        height: 80%;
+        height: 75%;
         display: flex;
         justify-content: space-around;
         align-items: center;
@@ -53,7 +53,7 @@
     }
 
     .navbar_list {
-        height: 20%;
+        height: 25%;
         background: var(--background-yellow);
         display: flex;
         align-items: center;
@@ -67,14 +67,21 @@
             text-align: center;
             
             li {
-                font-family: 'Roboto';
+                // font-family: 'Roboto';
+                font-family: Roboto, Helvetica, Arial, sans-serif;
                 font-style: normal;
-                font-weight: 300;
-                font-size: 16px;
-                line-height: 19px;
+                font-weight: 400;
                 color: #000000;
-
                 margin: 0 16px;
+                font-size: 1rem;
+                line-height: 1.5;
+                letter-spacing: 0.00938em;
+                cursor: pointer;
+
+                &:hover {
+                    color: var(--blue-principal-000052);
+                    border-bottom: 3px solid var(--blue-principal-000052);
+                }
             }
         }
     }
