@@ -25,11 +25,11 @@ export default function Home(){
       <PageDefault>
         <FullWidthCarousel images={images} autoSlideInterval={5000}/>
         <div className='home_product_container'>
-          <ProductSlide itemToShow={6}  slides={products} title="Nouvo Produi"/>
-          <ProductSlide  itemToShow={6} slides={products} title="Enfòmatik"/>
-          <ProductSlide itemToShow={6}  slides={products} title="Kosmetik"/>
-          <ProductSlide itemToShow={6}  slides={products} title="Pou Bouzen"/>
-          <ProductSlide itemToShow={6}  slides={products} title="Pou Vagabon"/>
+          <ProductSlide itemToShow={5}  slides={products} title="Nouvo Produi"/>
+          <ProductSlide  itemToShow={4} slides={products} title="Enfòmatik"/>
+          <ProductSlide itemToShow={4}  slides={products} title="Kosmetik"/>
+          <ProductSlide itemToShow={4}  slides={products} title="Pou Bouzen"/>
+          <ProductSlide itemToShow={3}  slides={products} title="Pou Vagabon"/>
         </div>
       </PageDefault>
   )
