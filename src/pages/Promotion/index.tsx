@@ -56,7 +56,9 @@ export default function Promotion() {
                         <img src={promo.images[0]} alt="" />
                         <img src={promo.images[1]} className="show-hover" alt="" />
                       </div>
-                      <h2>{promo.name}</h2>
+                      <h2>
+                        {(promo.name && promo.name.length > 35) ? promo.name.substring(0, 35)+'...' : promo.name}
+                      </h2>
                       <div className="bottom">
                         <i>de <span className="lastprice"> {promo.prices.before.formatted}</span></i>
                         <p className="currentPrice">{promo.prices.current.formatted} <span>{promo.prices.current.discountPercent} %</span></p>
