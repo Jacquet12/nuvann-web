@@ -56,13 +56,18 @@ export default function Promotion() {
                         <img src={promo.images[0]} alt="" />
                         <img src={promo.images[1]} className="show-hover" alt="" />
                       </div>
-                      <h2>{promo.name}</h2>
+                      {/* <h2>
+                        {(promo.name && promo.name.length > 35) ? promo.name.substring(0, 35)+'...' : promo.name}
+                      </h2> */}
                       <div className="bottom">
-                        <i>de <span className="lastprice"> {promo.prices.before.formatted}</span></i>
-                        <p>{promo.prices.current.formatted} </p>
-                        <p className='description'>
-                        {(promo.description && promo.description.length > 50) ? promo.description.substring(0,50)+'...' : promo.description}
+                        <p className='daily_deal'>Likidasyon</p>
+                        <p>
+                          <i>de <span className="lastprice"> {promo.prices.before.formatted}</span></i>
                         </p>
+                        <p className="currentPrice">{promo.prices.current.formatted} <span>{promo.prices.current.discountPercent} %</span></p>
+                        <p className='description'>
+                        {(promo.name && promo.name.length > 80) ? promo.name.substring(0, 80)+'...' : promo.name}
+                        </p>  
                       </div>
                     </div>
                   ))}

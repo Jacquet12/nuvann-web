@@ -134,8 +134,8 @@
       .sub_right{
         width: 100%;
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        grid-gap: 32px;
+        grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+        grid-gap: 25px;
         padding: 20px 0 5px 2%;
         
         .card_1{  
@@ -157,19 +157,10 @@
             text-transform: capitalize;
           }
   
-          i{
-            font-family: Roboto;
-            font-style: normal;
-            font-weight: 300;
-            font-size: 14px;
-            line-height: 16px;
-            color: #878787;
-          }
-  
           .lastprice{
             text-decoration:line-through;
           }
-  
+          
           p{
             font-family: Roboto;
             font-style: normal;
@@ -177,6 +168,28 @@
             font-size: 24px;
             line-height: 28px;
             color: #000000;
+            
+            i{
+              font-family: Roboto;
+              font-style: normal;
+              font-weight: 300;
+              font-size: 14px;
+              line-height: 16px;
+              color: #878787;
+            }
+    
+          }
+
+          .currentPrice {
+            width: 100%;
+            font-size: 24px;
+            color: rgba(0,0,0,.8);
+
+            span {
+              color: #00a650;
+              font-size: 14px;
+              font-weight: 400;
+            }
           }
   
           .product_img{
@@ -203,13 +216,12 @@
           }
   
           .bottom{
-            // margin-top: 2rem;
-            margin-left: 1rem;
-            width: 160px;
+            margin: 1rem;
+            width: 90%;
             height: 70px;
 
             .description {
-              color: #333;
+              color: rgba(0,0,0,.8);
               font-size: 14px;
               font-weight: 300;
               letter-spacing: .2px;
@@ -218,6 +230,20 @@
               max-height: 36px;
               min-height: unset;
               padding: 0;
+              word-wrap: break-word;
+            }
+
+            .daily_deal {
+
+              background-color: #3483fa;
+              -webkit-border-radius: 3px;
+              border-radius: 3px;
+              color: #fff;
+              display: inline-block;
+              font-size: 12px;
+              font-weight: 600;
+              line-height: 1.2;
+              padding: 2px 4px;
             }
           }
   
