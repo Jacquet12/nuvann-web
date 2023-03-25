@@ -1,10 +1,12 @@
 import React, { useEffect } from 'react'
 import { PageDefault } from '../../components/PageDefault'
+import ProductSkeleton from '../../components/CustomSkeleton';
 import { usePromotions } from '../../context/promotionsContext'
 import './styles.scss'
+import CustomSkeleton from '../../components/CustomSkeleton';
 
 export default function Promotion() {
-  const { promotions, getPromotions } = usePromotions();
+  const { promotions, getPromotions, loading } = usePromotions();
 
   useEffect(() => {
     getPromotions();
@@ -50,6 +52,14 @@ export default function Promotion() {
             </div>
               <div className="right_side__promotion">
                 <div className="sub_right">
+                  {loading ?
+                  <>
+                 <CustomSkeleton variant="rectangular" width="100%" height={40} animation="wave" />
+                 <CustomSkeleton variant="rectangular" width="100%" height={40} animation="wave" />
+                 <CustomSkeleton variant="rectangular" width="100%" height={40} animation="wave" />
+                  </>
+                  :
+                  <>
                   {promotions.map((promo: any) => (
                     <div className="card_1" key={promo.id} onClick={()=>{}}>
                       <div className="product_img">
@@ -71,6 +81,8 @@ export default function Promotion() {
                       </div>
                     </div>
                   ))}
+                  </>
+                  }
                 </div>
               </div>
 

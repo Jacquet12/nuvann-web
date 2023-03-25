@@ -32,7 +32,7 @@ const PromotionsProvider: React.FC<PromotionsProviderProps> = ({ children }) => 
   const [loading, setLoading] = useState<boolean>(false);
 
   const getPromotions = async () => {
-    // setLoading(true);
+    setLoading(true);
     try {
       const response = await nuvannApi.get("/promotions");
       console.log(response.data)
@@ -40,7 +40,7 @@ const PromotionsProvider: React.FC<PromotionsProviderProps> = ({ children }) => 
     } catch (error: any) {
       console.log({error: error.message});
     } finally {
-    //   setLoading(false);
+      setLoading(false);
     }
   };
 

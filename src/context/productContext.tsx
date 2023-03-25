@@ -32,14 +32,14 @@ const ProductProvider: React.FC<ProductsProviderProps> = ({ children }) => {
   const [loading, setLoading] = useState<boolean>(false);
 
   const getProducts = async () => {
-    // setLoading(true);
+    setLoading(true);
     try {
       const response = await nuvannApi.get("/products");
       setProducts(response.data.info);
     } catch (error: any) {
       console.log({error: error.message});
     } finally {
-    //   setLoading(false);
+      setLoading(false);
     }
   };
 
