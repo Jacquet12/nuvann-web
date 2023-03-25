@@ -6,6 +6,7 @@ import { useAuthContext } from "../context/authContext";
 import Promotion from "../pages/Promotion";
 import Categories from "../pages/Categories";
 import NotFound from "../pages/NotFound";
+import Detail from "../pages/Details";
 
 
 function CheckAuth({ children }: any) {
@@ -18,19 +19,20 @@ function CheckAuth({ children }: any) {
 export function PrincipalRoutes() {
 
   return (
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/promotion" element={<Promotion />} />
-        <Route path="/categories" element={<Categories />} />
-        <Route 
-          path="/*" 
-          element={
-            <CheckAuth>
-              <PrivateRoutes />
-            </CheckAuth>
-          }
-        />
-      </Routes>
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/login" element={<Login />} />
+      <Route path="/promotion" element={<Promotion />} />
+      <Route path="/categories" element={<Categories />} />
+      <Route path="/products/:id" element={<Detail />} />
+      <Route 
+        path="/*" 
+        element={
+          <CheckAuth>
+            <PrivateRoutes />
+          </CheckAuth>
+        }
+      />
+    </Routes>
   );
 }

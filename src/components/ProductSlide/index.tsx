@@ -69,12 +69,8 @@ const ProductSlide: React.FC<SliderProps> = ({ slides, title, itemToShow }) => {
             </div>
             <div className="product-content">
               <h3 className="title"> {product.name}</h3>
-              <h3 className="price">{product.prices.current.formatted} 
-              { product.prices.before.raw !== product.prices.current.raw ?
-              <span>{product.prices.before.formatted}</span>
-              : ''
-              }
-              </h3>
+              <span className="lastprice">de {product.prices.before.formatted}</span>
+              <h3 className="price">{product.prices.current.formatted} <span>{product.prices.current.discountPercent} %</span></h3>
               <h3 className="description"> {(product.description && product.description.length > 50) ? product.description.substring(0,50)+'...' : product.description}</h3>
             </div>
           </div>

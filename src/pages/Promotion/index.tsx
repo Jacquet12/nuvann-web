@@ -59,9 +59,9 @@ export default function Promotion() {
                       <h2>{promo.name}</h2>
                       <div className="bottom">
                         <i>de <span className="lastprice"> {promo.prices.before.formatted}</span></i>
-                        <p>{promo.prices.current.formatted} </p>
+                        <p className="currentPrice">{promo.prices.current.formatted} <span>{promo.prices.current.discountPercent} %</span></p>
                         <p className='description'>
-                        {(promo.description && promo.description.length > 50) ? promo.description.substring(0,50)+'...' : promo.description}
+                        {(promo.description && promo.description.length > 105) ? promo.description.substring(0, 105)+'...' : promo.description}
                         </p>  
                       </div>
                     </div>
