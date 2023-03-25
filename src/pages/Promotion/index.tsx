@@ -62,7 +62,7 @@ export default function Promotion() {
                         <p>{promo.prices.current.formatted} </p>
                         <p className='description'>
                         {(promo.description && promo.description.length > 50) ? promo.description.substring(0,50)+'...' : promo.description}
-                        </p>
+                        </p>  
                       </div>
                     </div>
                   ))}
