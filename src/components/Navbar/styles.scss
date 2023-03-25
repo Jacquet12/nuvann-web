@@ -66,21 +66,22 @@
             justify-content: center;
             text-align: center;
             
-            li {
+            a {
                 // font-family: 'Roboto';
                 font-family: Roboto, Helvetica, Arial, sans-serif;
                 font-style: normal;
-                font-weight: 400;
-                color: #000000;
+                font-weight: 500;
+                color: #0f0f0f;
                 margin: 0 16px;
                 font-size: 1rem;
                 line-height: 1.5;
                 letter-spacing: 0.00938em;
                 cursor: pointer;
+                text-decoration: none;
 
                 &:hover {
                     color: var(--blue-principal-000052);
-                    border-bottom: 3px solid var(--blue-principal-000052);
+                    border-bottom: 2px solid var(--blue-principal-000052);
                 }
             }
         }

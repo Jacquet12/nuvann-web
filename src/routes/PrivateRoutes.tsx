@@ -1,17 +1,16 @@
 import React from "react"
-import { Navigate, Route, Routes } from "react-router-dom";
-import { useAuthContext } from "../context/authContext";
+import { Route, Routes } from "react-router-dom";
 import { Cart } from "../pages/Cart";
-interface PrivateRouteProps {
-  path?: string;
-  element: React.ReactElement<any>;
-}
-
+import NotFound from "../pages/NotFound";
+import Seller from "../pages/Seller";
 
 const PrivateRoute: React.FC = () => {
   return (
   <Routes>
     <Route path="/cart" element={<Cart />} />
+    <Route path="/seller" element={<Seller />} />
+    <Route path="/*" element={<NotFound />} />
+
   </Routes>
   )
 }

@@ -142,10 +142,12 @@ export const Navbar: React.FC = () => {
         </div>
         <nav className="navbar_list">
             <ul>
-                <li>Prensipal</li>
-                <li>Pwomotion</li>
-                <li>Kategori ^</li>
-                <li>Vann</li>
+                <Link to="/">Prensipal</Link>
+                <Link to="/promotion">
+                  Pwomotion
+                  </Link>
+                <Link to="/categories">Kategori ..</Link>
+                <Link to="/seller">Vann</Link>
             </ul>
         </nav>
     </div>

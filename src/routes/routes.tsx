@@ -3,6 +3,9 @@ import PrivateRoutes from "./PrivateRoutes";
 import Login  from "../pages/Login";
 import Home from "../pages/Home";
 import { useAuthContext } from "../context/authContext";
+import Promotion from "../pages/Promotion";
+import Categories from "../pages/Categories";
+import NotFound from "../pages/NotFound";
 
 
 function CheckAuth({ children }: any) {
@@ -18,6 +21,8 @@ export function PrincipalRoutes() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/promotion" element={<Promotion />} />
+        <Route path="/categories" element={<Categories />} />
         <Route 
           path="/*" 
           element={
