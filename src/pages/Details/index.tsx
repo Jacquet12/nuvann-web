@@ -2,6 +2,7 @@ import { Grid, ListItem } from '@mui/material'
 import React, { useEffect, useState } from 'react'
 import  {AiOutlineShoppingCart}  from 'react-icons/ai'
 import {useParams } from 'react-router-dom'
+import ColorComponent from '../../components/colorComponent'
 import CustomButton from '../../components/CustomButton'
 import { PageDefault } from '../../components/PageDefault'
 import SizeComponent from '../../components/SizeComponent'
@@ -13,11 +14,17 @@ export default function Detail() {
   const {productInfos, getProductInfos} =useProduct()
 
   const [selectedSize, setSelectedSize] = useState<string | null>(null);
+  const [selectedColor, setSelectedColor] = useState<string | null>(null);
 
   const handleSelectSize = (size: string) => {
-    console.log(size)
     setSelectedSize((size).toString());
   };
+
+  const handleSelectColor = (color: string) => {
+    setSelectedColor(color);
+  };
+
+
   useEffect(() => {
     getProductInfos(Number(id));
     window.scrollTo(0,0)
@@ -46,11 +53,14 @@ export default function Detail() {
                   <span>-{productInfos?.prices?.current.discountPercent} %</span>
                 </p>
               </div>
+
+            </div>
+              <div className="colores_container">
+                <ColorComponent colors={productInfos?.properties.color}  selectedColor={selectedColor} onSelectColor={handleSelectColor} />
+              </div>
               <div className="sizes_container">
                   <SizeComponent sizes={productInfos?.properties.size} selectedSize={selectedSize} onSelectSize={handleSelectSize} />
               </div>
-
-            </div>
 
 
             <div className='detail_infos_footer'>
