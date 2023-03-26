@@ -4,6 +4,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import './styles.scss'
 import Title from "../Title";
+import { Link } from "react-router-dom";
 
 interface SliderProps {
   slides: any;
@@ -56,15 +57,15 @@ const ProductSlide: React.FC<SliderProps> = ({ slides, title, itemToShow }) => {
       <Title title={title} />
       <Slider {...settings}>
         {slides.map((product: any, index: any) => (
-          <div className="product-grid3" key={index}>
+          <div className="product-grid3" key={product.id}>
             <div className="product-image3">
-                <a href="">
+                <Link to={`/products/${product.id}`}>
                   {
                     product?.images?.slice(0, 2).map((img: string, index:number) =>(
                       <img key={index} className={`pic-${index + 1}`} src={img} alt={product.name}/>
                     ))
                   }
-                </a>
+                </Link>
                 {/* <span className="product-new-label">New</span> */}
             </div>
             <div className="product-content">
