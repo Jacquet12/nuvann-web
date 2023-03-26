@@ -99,12 +99,12 @@ export const Navbar: React.FC = () => {
                 transformOrigin={{ horizontal: 'left', vertical: 'top' }}
                 anchorOrigin={{ horizontal: 'left', vertical: 'bottom' }}
               >
-                <MenuItem onClick={handleClose}>
+                {/* <MenuItem onClick={handleClose}>
                   <Avatar /> Profile
                 </MenuItem>
                 <MenuItem onClick={handleClose}>
                   <Avatar /> My account
-                </MenuItem>
+                </MenuItem> */}
                 <Divider />
                 {/* <MenuItem onClick={handleClose}>
                   <ListItemIcon>

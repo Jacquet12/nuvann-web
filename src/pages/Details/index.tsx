@@ -1,9 +1,10 @@
 import { Grid, ListItem } from '@mui/material'
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import  {AiOutlineShoppingCart}  from 'react-icons/ai'
-import { useLocation, useParams } from 'react-router-dom'
+import {useParams } from 'react-router-dom'
 import CustomButton from '../../components/CustomButton'
 import { PageDefault } from '../../components/PageDefault'
+import SizeComponent from '../../components/SizeComponent'
 import { useProduct } from '../../context/productContext'
 import './styles.scss'
 
@@ -11,8 +12,15 @@ export default function Detail() {
   let { id } = useParams();
   const {productInfos, getProductInfos} =useProduct()
 
+  const [selectedSize, setSelectedSize] = useState<string | null>(null);
+
+  const handleSelectSize = (size: string) => {
+    console.log(size)
+    setSelectedSize((size).toString());
+  };
   useEffect(() => {
     getProductInfos(Number(id));
+    window.scrollTo(0,0)
   }, [])
 
   return (
@@ -38,8 +46,12 @@ export default function Detail() {
                   <span>-{productInfos?.prices?.current.discountPercent} %</span>
                 </p>
               </div>
+              <div className="sizes_container">
+                  <SizeComponent sizes={productInfos?.properties.size} selectedSize={selectedSize} onSelectSize={handleSelectSize} />
+              </div>
 
             </div>
+
 
             <div className='detail_infos_footer'>
             <CustomButton startIcon={<AiOutlineShoppingCart/>} textColor='#000052' className='btn_cart' variant='outlined'>Ajoute nan panye</CustomButton>
