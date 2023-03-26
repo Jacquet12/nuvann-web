@@ -8,6 +8,7 @@ interface Product {
     description: string;
     availableAmount?: number;
     prices: any;
+    properties?: any
 }
 
 interface ProductsContextProps {
