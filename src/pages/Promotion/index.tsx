@@ -4,8 +4,10 @@ import ProductSkeleton from '../../components/CustomSkeleton';
 import { usePromotions } from '../../context/promotionsContext'
 import './styles.scss'
 import CustomSkeleton from '../../components/CustomSkeleton';
+import { useNavigate } from 'react-router-dom';
 
 export default function Promotion() {
+  const navigate = useNavigate();
   const { promotions, getPromotions, loading } = usePromotions();
 
   useEffect(() => {
@@ -61,7 +63,9 @@ export default function Promotion() {
                   :
                   <>
                   {promotions.map((promo: any) => (
-                    <div className="card_1" key={promo.id} onClick={()=>{}}>
+                    <div className="card_1" key={promo.id} onClick={()=>{
+                      navigate(`/products/${promo.id}`)
+                    }}>
                       <div className="product_img">
                         <img src={promo.images[0]} alt="" />
                         <img src={promo.images[1]} className="show-hover" alt="" />

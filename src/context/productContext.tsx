@@ -6,12 +6,16 @@ interface Product {
     name: string;
     price: number;
     description: string;
+    availableAmount?: number;
+    prices: any;
 }
 
 interface ProductsContextProps {
     products: Product[];
     loading: boolean;
+    productInfos?: Product,
     getProducts: () => Promise<void>;
+    getProductInfos: (id: number) => Promise<Product | undefined>;
 }
 
 interface ProductsProviderProps {
@@ -20,7 +24,9 @@ interface ProductsProviderProps {
 const ProductContext = createContext<ProductsContextProps>({
     products: [],
     loading: false,
-    getProducts: () => Promise.resolve(),
+    productInfos: undefined,
+    getProducts: async () => Promise.resolve(),
+    getProductInfos: async(id:number) => undefined,
 });
 
 export const useProduct = () => useContext(ProductContext);
@@ -29,6 +35,7 @@ export const useProduct = () => useContext(ProductContext);
 
 const ProductProvider: React.FC<ProductsProviderProps> = ({ children }) => {
   const [products, setProducts] = useState<Product[]>([]);
+  const [productInfos, setProductInfos] = useState<Product | undefined>();
   const [loading, setLoading] = useState<boolean>(false);
 
   const getProducts = async () => {
@@ -43,10 +50,24 @@ const ProductProvider: React.FC<ProductsProviderProps> = ({ children }) => {
     }
   };
 
+  const getProductInfos = async(id: number) => {
+    setLoading(true)
+    try {
+      const response = await nuvannApi.get(`/products/${id}`)
+      setProductInfos(response.data.info)
+    } catch (error) {
+      
+    } finally {
+      setLoading(false)
+    }
+  }
+
   const value: any = {
     products,
     getProducts,
-    loading
+    loading,
+    getProductInfos,
+    productInfos
   }
 
   return (
