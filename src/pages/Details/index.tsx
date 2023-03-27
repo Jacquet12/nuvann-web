@@ -7,6 +7,7 @@ import ColorComponent from '../../components/colorComponent'
 import CustomButton from '../../components/CustomButton'
 import InputQuantity from '../../components/InputQuantity'
 import { PageDefault } from '../../components/PageDefault'
+import PaggingSlides from '../../components/PaggingSlides'
 import SizeComponent from '../../components/SizeComponent'
 import { useProduct } from '../../context/productContext'
 import './styles.scss'
@@ -39,9 +40,6 @@ export default function Detail() {
     setQty(qty-1)
   }
 
-  console.log(qty)
-
-
   useEffect(() => {
     getProductInfos(Number(id));
     window.scrollTo(0,0)
@@ -49,18 +47,23 @@ export default function Detail() {
 
   return (
     <PageDefault>
+        {/* <div>
+          teste
+        </div> */}
       <section className="detail_container">
         <div className="paggind_infos_section">
           {/* Carousel Pagging ,To Do */}
-          <div className="pagging_slide">1</div>
+          <div className="pagging_slide">
+            <PaggingSlides images={productInfos?.images}/>
+          </div>
 
           <div className="product_infos">
             <div>
               <h3>{productInfos?.name}</h3>
               <div className="title_footer">
                 <p>{productInfos?.availableAmount} <small>disponib</small></p>
-                <p><span>|</span> teste </p>
-                <p><span>|</span> teste </p>
+                <p><span>Vandè:</span> <small>{productInfos?.seller.name}</small>  </p>
+                <p><span>Pays:</span> <small>{productInfos?.seller.country.name}</small></p>
               </div>
 
               <div className='prices_class'>

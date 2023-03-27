@@ -8,7 +8,6 @@ interface Props {
 }
 
 const SizeComponent: React.FC<Props> = ({ sizes, selectedSize, onSelectSize }) => {
-  console.log(sizes)
   return (
     <>
     {
@@ -56,14 +55,7 @@ const SizeCircle: React.FC<CircleProps> = ({ size, selected, onSelectSize }) => 
 
       <div
         style={{
-          'margin': '0px 4px 4px 0px',
-          // color: rgba(0, 0, 0, 0.8);
-          // text-align: left;
-          // border-radius: 2px;
-          // border: 1px solid rgba(0, 0, 0, 0.09);
-          // position: relative;
-          // background: rgb(255, 255, 255);
-          // outline: 0px;
+          'margin': '0px 8px 8px 0px',
           flexWrap: 'wrap',
           minWidth: '4rem',
           border: selected ? '1px solid #000052' : '1px solid rgba(0, 0, 0, 0.09)',
