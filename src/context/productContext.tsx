@@ -10,7 +10,8 @@ interface Product {
     prices: any;
     properties?: any
     images: string[],
-    seller?: any
+    seller?: any,
+    shipments: any
 }
 
 interface ProductsContextProps {
