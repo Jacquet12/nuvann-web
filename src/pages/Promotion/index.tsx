@@ -63,9 +63,7 @@ export default function Promotion() {
                   :
                   <>
                   {promotions.map((promo: any) => (
-                    <div className="card_1" key={promo.id} onClick={()=>{
-                      navigate(`/products/${promo.id}`)
-                    }}>
+                    <div className="card_1" key={promo.id} onClick={()=>{navigate(`/products/${promo.id}`)}}>
                       <div className="product_img">
                         <img src={promo.images[0]} alt="" />
                         <img src={promo.images[1]} className="show-hover" alt="" />

@@ -5,6 +5,7 @@ import  {AiOutlineShoppingCart}  from 'react-icons/ai'
 import {useParams } from 'react-router-dom'
 import ColorComponent from '../../components/colorComponent'
 import CustomButton from '../../components/CustomButton'
+import CustomSlider from '../../components/customSlider'
 import InputQuantity from '../../components/InputQuantity'
 import { PageDefault } from '../../components/PageDefault'
 import PaggingSlides from '../../components/PaggingSlides'
@@ -15,7 +16,7 @@ import './styles.scss'
 
 export default function Detail() {
   let { id } = useParams();
-  const {productInfos, getProductInfos} =useProduct()
+  const {productInfos, getProductInfos, products, getProducts} =useProduct();
 
   const [selectedSize, setSelectedSize] = useState<string | null>(null);
   const [selectedColor, setSelectedColor] = useState<string | null>(null);
@@ -36,24 +37,26 @@ export default function Detail() {
   };
 
   const handleChangeQuantity = (qty: number) => {
-    setQty(Number(qty))
+    setQty(Number(qty));
   }
 
   const handleIncrement = () =>{
-    setQty(qty+1)
+    setQty(qty+1);
   }
 
   const handleDecrement = ()=> {
-    setQty(qty-1)
+    setQty(qty-1);
   }
 
   useEffect(() => {
+    getProducts();
     getProductInfos(Number(id));
     window.scrollTo(0,0)
   }, [id])
 
   return (
     <PageDefault>
+      <>
         {/* <div>
           teste
         </div> */}
@@ -113,6 +116,12 @@ export default function Detail() {
 
         </div>
       </section>
+
+      <section className="detail_sameCategory_card">
+        <CustomSlider title='Wap Renmen' slides={productInfos?.relatedProducts} itemToShow={5}/>
+      </section >
+      </>
+
     </PageDefault>
   )
 }
