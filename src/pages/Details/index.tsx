@@ -1,9 +1,11 @@
 import { Grid, ListItem } from '@mui/material'
+import { color } from '@mui/system'
 import React, { useEffect, useState } from 'react'
 import  {AiOutlineShoppingCart}  from 'react-icons/ai'
 import {useParams } from 'react-router-dom'
 import ColorComponent from '../../components/colorComponent'
 import CustomButton from '../../components/CustomButton'
+import InputQuantity from '../../components/InputQuantity'
 import { PageDefault } from '../../components/PageDefault'
 import SizeComponent from '../../components/SizeComponent'
 import { useProduct } from '../../context/productContext'
@@ -15,6 +17,7 @@ export default function Detail() {
 
   const [selectedSize, setSelectedSize] = useState<string | null>(null);
   const [selectedColor, setSelectedColor] = useState<string | null>(null);
+  const [qty, setQty] = useState(1);
 
   const handleSelectSize = (size: string) => {
     setSelectedSize((size).toString());
@@ -23,6 +26,20 @@ export default function Detail() {
   const handleSelectColor = (color: string) => {
     setSelectedColor(color);
   };
+
+  const handleChangeQuantity = (qty: number) => {
+    setQty(Number(qty))
+  }
+
+  const handleIncrement = () =>{
+    setQty(qty+1)
+  }
+
+  const handleDecrement = ()=> {
+    setQty(qty-1)
+  }
+
+  console.log(qty)
 
 
   useEffect(() => {
@@ -60,6 +77,17 @@ export default function Detail() {
               </div>
               <div className="sizes_container">
                   <SizeComponent sizes={productInfos?.properties.size} selectedSize={selectedSize} onSelectSize={handleSelectSize} />
+              </div>
+
+              <div className="input_quantity_container">
+                <InputQuantity
+                total={productInfos?.availableAmount}
+                  label='Kantite'
+                  onChange={handleChangeQuantity} 
+                  value={qty}
+                  increment={handleIncrement}
+                  decrement={handleDecrement}
+                />
               </div>
 
 

@@ -79,11 +79,10 @@ const SizeCircle: React.FC<CircleProps> = ({ size, selected, onSelectSize }) => 
           <div
             style={{
               position: 'relative',
-              bottom: '-12px',
-              right: '-22px',
               width: '10px',
+              right: '-5px',
               height: '10px',
-              // borderRadius: '30%',
+              borderRadius: '50%',
               backgroundColor: '#000052',
               display: 'flex',
               alignItems: 'center',
