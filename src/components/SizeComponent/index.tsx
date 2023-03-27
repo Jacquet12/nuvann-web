@@ -8,15 +8,22 @@ interface Props {
 }
 
 const SizeComponent: React.FC<Props> = ({ sizes, selectedSize, onSelectSize }) => {
+  console.log(sizes)
   return (
     <>
-     <p style={{
-      color: '#757575',
-      width: '110px',
-      textTransform: 'capitalize',
-      flexShrink: '0',
-      alignItems: 'center',
-     }}>Sizes: </p>
+    {
+      sizes?.length ? 
+      <p style={{
+       color: '#757575',
+       width: '110px',
+       textTransform: 'capitalize',
+       flexShrink: '0',
+       alignItems: 'center',
+      }}>Sizes: </p>
+      :
+      ''
+    }
+
     <div style={{ display: 'flex', flexWrap: 'wrap'}}>
       {sizes?.map((size:any, index:number) => (
         <SizeCircle
