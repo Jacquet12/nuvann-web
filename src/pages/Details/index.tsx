@@ -8,6 +8,7 @@ import CustomButton from '../../components/CustomButton'
 import InputQuantity from '../../components/InputQuantity'
 import { PageDefault } from '../../components/PageDefault'
 import PaggingSlides from '../../components/PaggingSlides'
+import ShipmentInfos from '../../components/ShipmentInfos'
 import SizeComponent from '../../components/SizeComponent'
 import { useProduct } from '../../context/productContext'
 import './styles.scss'
@@ -18,7 +19,13 @@ export default function Detail() {
 
   const [selectedSize, setSelectedSize] = useState<string | null>(null);
   const [selectedColor, setSelectedColor] = useState<string | null>(null);
+  const [selectedShippingInfo, setSelectedShippingInfo] = useState({});
+
   const [qty, setQty] = useState(1);
+  
+  const handleSelectShippingInfo = (selectedShippingInfo: any) => {
+    setSelectedShippingInfo(selectedShippingInfo);
+  };
 
   const handleSelectSize = (size: string) => {
     setSelectedSize((size).toString());
@@ -43,7 +50,7 @@ export default function Detail() {
   useEffect(() => {
     getProductInfos(Number(id));
     window.scrollTo(0,0)
-  }, [])
+  }, [id])
 
   return (
     <PageDefault>
@@ -80,6 +87,10 @@ export default function Detail() {
               </div>
               <div className="sizes_container">
                   <SizeComponent sizes={productInfos?.properties.size} selectedSize={selectedSize} onSelectSize={handleSelectSize} />
+              </div>
+
+              <div className="shipment_infos">
+              <ShipmentInfos shippingInfos={productInfos?.shipments} onInfoSelect={handleSelectShippingInfo} />
               </div>
 
               <div className="input_quantity_container">
