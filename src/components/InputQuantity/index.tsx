@@ -7,35 +7,32 @@ interface InputQuantityProps {
     type?: string;
     name?: string;
     value?: number;
-    decrement?: () => void;
-    increment?: () => void;
+    decrement: () => void;
+    increment: () => void;
     onChange?: (value: number) => void;
-
+    total?:number;
 }
 
 const InputQuantity: React.FC<InputQuantityProps> =({
     label,
-    type,
     name,
     decrement,
     value,
-    onChange,
-    increment
+    increment,
+    total,
 }) =>{
 
-    const [query, setQuery] = useState<string>('');
-
-    const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setQuery(event.target.value);
-      };
   return (
     <>
-        <span>{label}</span>
+        <span className="label"> {label}: </span>
         <form className="count-inlineflex">
             <div className="qty-min" onClick={decrement}>-</div>
-                <input type={type} name={name} value={query} onChange={handleInputChange} className="qty" min="1"/>
+                <input disabled type="text" name={name} value={value}  className="qty" minLength={1}/>
             <div className="qty-max" onClick={increment}>+</div>
         </form>
+        {total ? 
+        <span className="label"> {total} disponib </span>
+        :''}
     </>
   )
 }

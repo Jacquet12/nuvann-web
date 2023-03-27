@@ -10,13 +10,15 @@ interface Props {
 const ColorComponent: React.FC<Props> = ({ colors, selectedColor, onSelectColor }) => {
   return (
     <>
-     <p style={{
-      color: '#757575',
-      width: '110px',
-      textTransform: 'capitalize',
-      flexShrink: '0',
-      alignItems: 'center',
-     }}>Koulè: </p>
+      { colors?.length ? 
+      <p style={{
+       color: '#757575',
+       width: '110px',
+       textTransform: 'capitalize',
+       flexShrink: '0',
+       alignItems: 'center',
+      }}>Koulè: </p>
+      :  ''}
     <div style={{ display: 'flex', flexWrap: 'wrap'}}>
       {colors?.map((color:any, index:number) => (
         <ColorCircle

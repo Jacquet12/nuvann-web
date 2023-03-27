@@ -8,15 +8,22 @@ interface Props {
 }
 
 const SizeComponent: React.FC<Props> = ({ sizes, selectedSize, onSelectSize }) => {
+  console.log(sizes)
   return (
     <>
-     <p style={{
-      color: '#757575',
-      width: '110px',
-      textTransform: 'capitalize',
-      flexShrink: '0',
-      alignItems: 'center',
-     }}>Sizes: </p>
+    {
+      sizes?.length ? 
+      <p style={{
+       color: '#757575',
+       width: '110px',
+       textTransform: 'capitalize',
+       flexShrink: '0',
+       alignItems: 'center',
+      }}>Sizes: </p>
+      :
+      ''
+    }
+
     <div style={{ display: 'flex', flexWrap: 'wrap'}}>
       {sizes?.map((size:any, index:number) => (
         <SizeCircle
@@ -79,11 +86,10 @@ const SizeCircle: React.FC<CircleProps> = ({ size, selected, onSelectSize }) => 
           <div
             style={{
               position: 'relative',
-              bottom: '-12px',
-              right: '-22px',
               width: '10px',
+              right: '-5px',
               height: '10px',
-              // borderRadius: '30%',
+              borderRadius: '50%',
               backgroundColor: '#000052',
               display: 'flex',
               alignItems: 'center',

@@ -26,5 +26,17 @@
 .count-inlineflex {
 	display: inline-flex;
 	border: solid 2px #ccc;
-	border-radius: 20px;  
+	border-radius: 20px;
+
+    input {
+        background-color:rgb(236, 236, 236);
+    }
+}
+
+.label {
+    color: rgb(117, 117, 117);
+    width: 110px;
+    text-transform: capitalize;
+    flex-shrink: 0;
+    align-items: center;
 }

@@ -54,7 +54,7 @@ export const Navbar: React.FC = () => {
               // </li>
               <>
               <li onClick={handleClick}
-                onMouseOver={handleClick}
+                // onMouseOver={handleClick}
                 aria-controls={open ? 'account-menu' : undefined}
                 aria-expanded={open ? 'true' : undefined}>
                 <Avatar 
