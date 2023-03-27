@@ -9,6 +9,8 @@ interface Product {
     availableAmount?: number;
     prices: any;
     properties?: any
+    images: string[],
+    seller?: any
 }
 
 interface ProductsContextProps {

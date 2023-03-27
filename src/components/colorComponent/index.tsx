@@ -51,14 +51,7 @@ const ColorCircle: React.FC<CircleProps> = ({ color, selected, onSelectColor }) 
 
       <div
         style={{
-          'margin': '0px 4px 4px 0px',
-          // color: rgba(0, 0, 0, 0.8);
-          // text-align: left;
-          // border-radius: 2px;
-          // border: 1px solid rgba(0, 0, 0, 0.09);
-          // position: relative;
-          // background: rgb(255, 255, 255);
-          // outline: 0px;
+          'margin': '0px 8px 8px 0px',
           flexWrap: 'wrap',
           minWidth: '2.025rem',
           minHeight: '2.025rem',
