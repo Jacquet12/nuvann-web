@@ -16,11 +16,11 @@ function App() {
     <ToastProvider >
       <ProductProvider>
           <PromotionsProvider>
-          <AuthProvider >
               <CartProvider >
-              <PrincipalRoutes /> 
+                <AuthProvider >
+                    <PrincipalRoutes /> 
+                </AuthProvider>
               </CartProvider>
-          </AuthProvider>
           </PromotionsProvider>
         </ProductProvider>
     </ToastProvider> 
