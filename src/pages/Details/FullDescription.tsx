@@ -19,7 +19,6 @@ const FullDescription: React.FC<TitleProps> =({
      pro_subCategory,
      pro_tags
     }) =>{
-        console.log(pro_tags)
     return (
         <div className="full_desc_section">
             <div className="__title">
@@ -27,7 +26,7 @@ const FullDescription: React.FC<TitleProps> =({
             </div>
             <div className="specific_infos">
                 <div className="__subtitle">
-                    <p> Origin :</p>
+                    <p> Origin:</p>
                 </div>
                 <div className="__desc">
                     <p>{pro_seller}</p>
@@ -44,13 +43,12 @@ const FullDescription: React.FC<TitleProps> =({
 
             <div className="specific_infos">
                 <div className="__subtitle">
-               
-                    <p> Tag :</p>
+                    <p> Tag:</p>
                 </div>
                 <div className="__desc">
                     {
                         pro_tags?.map((tag: string, index:number) =>(
-                            <p className="tag"> #{tag} teste </p>
+                            <p key={index} className="tag"> #{tag} teste </p>
                         ))
                     }
                 </div>
@@ -59,14 +57,14 @@ const FullDescription: React.FC<TitleProps> =({
 
 
 
-            <br /><br />
+            <br /><br /> <br />
             <div className="__title">
                 <h3 className="full_desc_title">Deskripsyon Pwodui an</h3>
             </div>
 
             <div className="specific_infos">
                 <div className="__subtitle">
-                    <p> Dekripsyon :</p>
+                    <p> Dekripsyon:</p>
                 </div>
                 <div className="__desc">
                     <p>{description}</p>

@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { BrowserRouter, Router } from 'react-router-dom'
 import { AuthProvider } from './context/authContext'
+import { CartProvider } from './context/cartContext'
 import ProductProvider from './context/productContext'
 import PromotionsProvider from './context/promotionsContext'
 import ToastProvider from './context/useToast'
@@ -14,11 +15,13 @@ function App() {
     <BrowserRouter>
     <ToastProvider >
       <ProductProvider>
-        <PromotionsProvider>
+          <PromotionsProvider>
           <AuthProvider >
-            <PrincipalRoutes /> 
+              <CartProvider >
+              <PrincipalRoutes /> 
+              </CartProvider>
           </AuthProvider>
-        </PromotionsProvider>
+          </PromotionsProvider>
         </ProductProvider>
     </ToastProvider> 
     </BrowserRouter>
