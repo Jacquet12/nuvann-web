@@ -28,8 +28,8 @@ const ShipmentInfos: FC<ShippingProps> = ({ shippingInfos, onInfoSelect }) => {
     <div className="shipping">
       <h4>Enfòmasyon sou livrezon</h4>
       <div className="shipping-list">
-        {shippingInfos?.map((info) => (
-          <div key={info.id} className="shipping-info">
+        {shippingInfos?.map((info, index) => (
+          <div key={info.id+index} className="shipping-info">
             <label htmlFor={`shipping-${info.id}`}>
               <input
                 type="radio"

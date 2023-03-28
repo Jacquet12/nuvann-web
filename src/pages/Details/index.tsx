@@ -1,26 +1,37 @@
 import React, { useEffect, useState } from 'react'
 import  {AiOutlineShoppingCart}  from 'react-icons/ai'
-import {useParams } from 'react-router-dom'
+import {useNavigate, useParams } from 'react-router-dom'
 import AvailableCountries from '../../components/AvailableCountries'
 import ColorComponent from '../../components/colorComponent'
 import CustomButton from '../../components/CustomButton'
 import CustomSlider from '../../components/customSlider'
 import InputQuantity from '../../components/InputQuantity'
+import ModalSimple from '../../components/ModalSimple'
 import { PageDefault } from '../../components/PageDefault'
 import PaggingSlides from '../../components/PaggingSlides'
 import ShipmentInfos from '../../components/ShipmentInfos'
 import SizeComponent from '../../components/SizeComponent'
+import { useCart , addProductProps} from '../../context/cartContext'
 import { useProduct } from '../../context/productContext'
 import FullDescription from './FullDescription'
 import './styles.scss'
 
 export default function Detail() {
+  const navigate = useNavigate()
   let { id } = useParams();
   const {productInfos, getProductInfos} =useProduct();
+  const {addToCart, loading} =useCart();
 
-  const [selectedSize, setSelectedSize] = useState<string | null>(null);
-  const [selectedColor, setSelectedColor] = useState<string | null>(null);
-  const [selectedShippingInfo, setSelectedShippingInfo] = useState({});
+  const [selectedSize, setSelectedSize] = useState({
+    key:"",
+    value : ""
+  });
+  const [selectedColor, setSelectedColor] = useState({
+    key: "",
+    value: ""
+  });
+  const [selectedShippingInfo, setSelectedShippingInfo] = useState({id:0});
+  const [openSimpleModal, setOpenSimpleModal] = useState<boolean>(false);
 
   const [qty, setQty] = useState(1);
   
@@ -28,12 +39,18 @@ export default function Detail() {
     setSelectedShippingInfo(selectedShippingInfo);
   };
 
-  const handleSelectSize = (size: string) => {
-    setSelectedSize((size).toString());
+  const handleSelectSize = (size: any) => {
+    setSelectedSize({
+      key: "size",
+      value: (size).toString()
+    });
   };
 
-  const handleSelectColor = (color: string) => {
-    setSelectedColor(color);
+  const handleSelectColor = (color:any) => {
+    setSelectedColor({
+      key: "color",
+      value:color
+    });
   };
 
   const handleChangeQuantity = (qty: number) => {
@@ -55,8 +72,40 @@ export default function Detail() {
     window.scrollTo(0,0)
   }, [id])
 
+  const handleAddProductToCart = async() => {
+    const data: addProductProps = {
+      id:  Number(id),
+      quantity: qty,
+      selectedSize: selectedSize,
+      selectedColor: selectedColor,
+      selectedShippingInfo:Number(selectedShippingInfo?.id)
+    }
+    const response: any = await addToCart(data);
+    if(response !== "error") {
+      setOpenSimpleModal(true)
+    }
+    
+  }
+
   return (
     <PageDefault>
+      <ModalSimple
+      size={400}
+       loading={loading}
+        textBtnCancel='Non'
+        widthBtnCancel='60px'
+        textBtnConfirm='Wi'
+        widthBtnConfirm='60px'
+        description='Ou vle ale nan panye an ?'
+        open ={openSimpleModal}
+        setOpen= {setOpenSimpleModal}
+        onCLickBtnCancel= {() => {
+          setOpenSimpleModal(false)
+        }}
+        onClickBtnConfirm= {() =>{
+          navigate("/cart")
+        }}
+      />
       <section className="__container">
       <div className="detail_container">
         <div className="paggind_infos_section">
@@ -87,10 +136,10 @@ export default function Detail() {
 
             </div>
               <div className="colores_container">
-                <ColorComponent colors={productInfos?.properties.color}  selectedColor={selectedColor} onSelectColor={handleSelectColor} />
+                <ColorComponent colors={productInfos?.properties.color}  selectedColor={selectedColor.value} onSelectColor={handleSelectColor} />
               </div>
               <div className="sizes_container">
-                  <SizeComponent sizes={productInfos?.properties.size} selectedSize={selectedSize} onSelectSize={handleSelectSize} />
+                  <SizeComponent sizes={productInfos?.properties.size} selectedSize={selectedSize.value} onSelectSize={handleSelectSize} />
               </div>
 
               <div className="shipment_infos">
@@ -114,7 +163,14 @@ export default function Detail() {
 
 
             <div className='detail_infos_footer'>
-            <CustomButton startIcon={<AiOutlineShoppingCart/>} textColor='#000052' className='btn_cart' variant='outlined'>Ajoute nan panye</CustomButton>
+            <CustomButton
+              startIcon={<AiOutlineShoppingCart/>}
+              textColor='#000052' className='btn_cart'
+              variant='outlined'
+              onClick={handleAddProductToCart}
+              >
+                Ajoute nan panye
+              </CustomButton>
             <CustomButton className='btn_purchase' backgroundColor="#00B127" textColor='#fff'>Achte</CustomButton>
             </div>
           </div>
