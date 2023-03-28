@@ -39,6 +39,7 @@ export default function Detail() {
     setSelectedShippingInfo(selectedShippingInfo);
   };
 
+ 
   const handleSelectSize = (size: any) => {
     setSelectedSize({
       key: "size",
@@ -52,9 +53,12 @@ export default function Detail() {
       value:color
     });
   };
-
+  
   const handleChangeQuantity = (qty: number) => {
+    
     setQty(Number(qty));
+    // console.log(productInfos?.properties.color.length)
+    // console.log(productInfos?.properties.size.length)
   }
 
   const handleIncrement = () =>{
@@ -67,7 +71,7 @@ export default function Detail() {
     }
   }
 
-  useEffect(() => {
+  useEffect( () => {
     getProductInfos(Number(id));
     window.scrollTo(0,0)
   }, [id])
@@ -86,6 +90,8 @@ export default function Detail() {
     }
     
   }
+
+
 
   return (
     <PageDefault>
