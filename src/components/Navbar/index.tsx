@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { FiUser } from "react-icons/fi"
 import './styles.scss'
 import InputSearch from '../InputSearch'
@@ -12,9 +12,11 @@ import navAvatar from "../../assets/1.jpg"
 import Badge from '@mui/material/Badge/Badge'
 import { Box, Divider, IconButton, ListItemIcon, Menu, MenuItem, Tooltip } from '@mui/material'
 import { Logout, PersonAdd, Settings } from '@mui/icons-material'
+import { useCart } from '../../context/cartContext'
 
 export const Navbar: React.FC = () => {
  const {user, logout}=useAuthContext()
+ const {cartCount, handleGetCart} = useCart();
   // const [searchResults, setSearchResults] = useState([]);
 
   const handleSearch = (searchText: string) => {
@@ -31,6 +33,11 @@ export const Navbar: React.FC = () => {
   const handleClose = () => {
     setAnchorEl(null);
   };
+
+  useEffect(() => {
+    handleGetCart();
+  }, [])
+  
 
   return (
     <div className="navbar_container_principal">
@@ -129,7 +136,7 @@ export const Navbar: React.FC = () => {
             }
               <li>
               <Link to="/cart">
-                <Badge color="error" badgeContent={4}>
+                <Badge color="error" badgeContent={cartCount}>
                   <img src={cartLogo} alt="cartIcon" />
                 </Badge>
               </Link>
