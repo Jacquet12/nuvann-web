@@ -1,5 +1,3 @@
-import { Grid, ListItem } from '@mui/material'
-import { color } from '@mui/system'
 import React, { useEffect, useState } from 'react'
 import  {AiOutlineShoppingCart}  from 'react-icons/ai'
 import {useParams } from 'react-router-dom'
@@ -74,9 +72,9 @@ export default function Detail() {
             <div>
               <h3>{productInfos?.name}</h3>
               <div className="title_footer">
-                <p>{productInfos?.soldAmount} <small>Vant</small></p>
                 <p><span>Vandè:</span> <small>{productInfos?.seller.name}</small>  </p>
                 <p><span>Pays:</span> <small>{productInfos?.seller.country.name}</small></p>
+                <p>Vant: <small>{productInfos?.soldAmount} unite</small></p>
               </div>
 
               <div className='prices_class'>
