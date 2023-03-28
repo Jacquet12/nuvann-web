@@ -97,7 +97,6 @@ export default function Detail() {
     <PageDefault>
       <ModalSimple
       size={400}
-       loading={loading}
         textBtnCancel='Non'
         widthBtnCancel='60px'
         textBtnConfirm='Wi'
@@ -170,6 +169,7 @@ export default function Detail() {
 
             <div className='detail_infos_footer'>
             <CustomButton
+              isLoading={loading}
               startIcon={<AiOutlineShoppingCart/>}
               textColor='#000052' className='btn_cart'
               variant='outlined'
