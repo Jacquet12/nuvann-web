@@ -68,7 +68,12 @@ const CustomSlider: React.FC<SliderProps> = ({ slides, title, itemToShow }) => {
             <p>
               <i>de <span className="lastprice"> {product.prices.before.formatted}</span></i>
             </p>
-            <p className="currentPrice">{product.prices.current.formatted} <span>{product.prices.current.discountPercent} %</span></p>
+            <p className="currentPrice">{product.prices.current.formatted}
+            {
+              product.prices.current.discountPercent &&
+              <span>{product.prices.current.discountPercent} %</span>
+            }
+            </p>
             <p className='description'>
               {(product.name && product.name.length > 80) ? product.name.substring(0, 80)+'...' : product.name}
             </p>  

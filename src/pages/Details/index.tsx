@@ -57,11 +57,8 @@ export default function Detail() {
 
   return (
     <PageDefault>
-      <>
-        {/* <div>
-          teste
-        </div> */}
-      <section className="detail_container">
+      <section className="__container">
+      <div className="detail_container">
         <div className="paggind_infos_section">
           {/* Carousel Pagging ,To Do */}
           <div className="pagging_slide">
@@ -81,7 +78,10 @@ export default function Detail() {
                 <p>
                   <small>{productInfos?.prices?.before.formatted}</small>
                   {productInfos?.prices?.current.formatted}
-                  <span>-{productInfos?.prices?.current.discountPercent} %</span>
+                  {
+                    productInfos?.prices?.current.discountPercent && 
+                    <span>-{productInfos?.prices?.current.discountPercent} %</span>
+                  }
                 </p>
               </div>
 
@@ -120,13 +120,13 @@ export default function Detail() {
           </div>
 
         </div>
-      </section>
+      </div>
 
-      <section className="detail_sameCategory_card">
+      <div className="detail_sameCategory_card">
         <CustomSlider title='Wap Renmen' slides={productInfos?.relatedProducts} itemToShow={5}/>
-      </section >
+      </div >
 
-      <section className="detail_full_description_card">
+      <div className="detail_full_description_card">
         <FullDescription
           description={productInfos?.description}
           pro_country={productInfos?.availableCountries}
@@ -135,8 +135,8 @@ export default function Detail() {
           pro_subCategory={productInfos?.subcategory.name}
           pro_tags={productInfos?.subcategory.tags}
         />
-      </section >
-      </>
+      </div >
+      </section>
 
     </PageDefault>
   )
