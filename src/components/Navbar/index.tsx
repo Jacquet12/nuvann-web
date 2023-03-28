@@ -15,7 +15,7 @@ import { Logout, PersonAdd, Settings } from '@mui/icons-material'
 import { useCart } from '../../context/cartContext'
 
 export const Navbar: React.FC = () => {
- const {user, logout}=useAuthContext()
+ const {user,token, logout}=useAuthContext()
  const {cartCount, handleGetCart} = useCart();
   // const [searchResults, setSearchResults] = useState([]);
 
@@ -35,7 +35,9 @@ export const Navbar: React.FC = () => {
   };
 
   useEffect(() => {
-    handleGetCart();
+    if(user&& token) {
+      handleGetCart();
+    }
   }, [])
   
 
