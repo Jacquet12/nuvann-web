@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import  {AiOutlineShoppingCart}  from 'react-icons/ai'
-import {useNavigate, useParams } from 'react-router-dom'
+import {useLocation, useNavigate, useParams } from 'react-router-dom'
 import AvailableCountries from '../../components/AvailableCountries'
 import ColorComponent from '../../components/colorComponent'
 import CustomButton from '../../components/CustomButton'
@@ -11,6 +11,7 @@ import { PageDefault } from '../../components/PageDefault'
 import PaggingSlides from '../../components/PaggingSlides'
 import ShipmentInfos from '../../components/ShipmentInfos'
 import SizeComponent from '../../components/SizeComponent'
+import { useAuthContext } from '../../context/authContext'
 import { useCart , addProductProps} from '../../context/cartContext'
 import { useProduct } from '../../context/productContext'
 import FullDescription from './FullDescription'
@@ -18,9 +19,11 @@ import './styles.scss'
 
 export default function Detail() {
   const navigate = useNavigate()
+  const location = useLocation();
   let { id } = useParams();
   const {productInfos, getProductInfos} =useProduct();
   const {addToCart, loading} =useCart();
+  const {user, token} = useAuthContext();
 
   const [selectedSize, setSelectedSize] = useState({
     key:"",
@@ -77,18 +80,21 @@ export default function Detail() {
   }, [id])
 
   const handleAddProductToCart = async() => {
-    const data: addProductProps = {
-      id:  Number(id),
-      quantity: qty,
-      selectedSize: selectedSize,
-      selectedColor: selectedColor,
-      selectedShippingInfo:Number(selectedShippingInfo?.id)
+    if(!!user && !!token) {
+      const data: addProductProps = {
+        id:  Number(id),
+        quantity: qty,
+        selectedSize: selectedSize,
+        selectedColor: selectedColor,
+        selectedShippingInfo:Number(selectedShippingInfo?.id)
+      }
+      const response: any = await addToCart(data);
+      if(response !== "error") {
+        setOpenSimpleModal(true)
+      }
+    } else {
+      navigate({pathname: "/login"}, {state: location.pathname});
     }
-    const response: any = await addToCart(data);
-    if(response !== "error") {
-      setOpenSimpleModal(true)
-    }
-    
   }
 
 
@@ -140,6 +146,13 @@ export default function Detail() {
               </div>
 
             </div>
+            <section style={{
+                // border: selectedColor.value &&  '2px solid #fff5f5',
+                // backgroundColor: selectedColor.value ? '#fff5f5' : '',
+                // box: 'shake',
+                marginTop:'8px'
+              }}>
+              {/* <div className="colores_container shake"> */}
               <div className="colores_container">
                 <ColorComponent colors={productInfos?.properties.color}  selectedColor={selectedColor.value} onSelectColor={handleSelectColor} />
               </div>
@@ -150,6 +163,8 @@ export default function Detail() {
               <div className="shipment_infos">
               <ShipmentInfos shippingInfos={productInfos?.shipments} onInfoSelect={handleSelectShippingInfo} />
               </div>
+
+            </section>
               <div className='avalaible_countries'>
                 <AvailableCountries countries={productInfos?.availableCountries} />
               </div>

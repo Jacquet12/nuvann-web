@@ -13,7 +13,7 @@ function CheckAuth({ children }: any) {
   const location = useLocation();
   const { token } = useAuthContext();
   const authenticate = !!token;
-  return authenticate ? children : <Navigate to={{pathname: "/login"}} state={{from: location.pathname}} replace />
+  return authenticate ? children : <Navigate to={{pathname: "/login"}} state={location.state} replace />
 }
 
 export function PrincipalRoutes() {
