@@ -147,7 +147,6 @@ export default function Detail() {
 
             </div>
             <section style={{
-                // border: selectedColor.value &&  '2px solid #fff5f5',
                 // backgroundColor: selectedColor.value ? '#fff5f5' : '',
                 // box: 'shake',
                 marginTop:'8px'
