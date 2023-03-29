@@ -82,7 +82,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       // successToast(response.data.message);
       localStorage.setItem('@nuvann:token', access_token);
       localStorage.setItem('@nuvann:user', JSON.stringify(user_info));
-      navigate(location.state?.from || "/");
+      navigate(location.state?.from || location.state);
       setData({
         user : user_info,
         token: access_token
@@ -97,14 +97,14 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   const logout = async() => {
     try {
-      const response = await nuvannApi.get('auth/logout');
+      await nuvannApi.get('auth/logout');
       localStorage.removeItem('@nuvann:token');
       localStorage.removeItem('@nuvann:user');
       setData({} as AuthState)
       navigate("/")
     } catch (error: any) {
       const message: string = error.response.data.message
-      errorToast(message)
+      // errorToast(message)
     }
   }
   
