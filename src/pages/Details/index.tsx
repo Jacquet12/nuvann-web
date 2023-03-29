@@ -35,11 +35,13 @@ export default function Detail() {
   });
   const [selectedShippingInfo, setSelectedShippingInfo] = useState({id:0});
   const [openSimpleModal, setOpenSimpleModal] = useState<boolean>(false);
+  const [handleError, sethandleError] =useState<boolean>(false)
 
   const [qty, setQty] = useState(1);
   
   const handleSelectShippingInfo = (selectedShippingInfo: any) => {
     setSelectedShippingInfo(selectedShippingInfo);
+    sethandleError(false)
   };
 
  
@@ -48,6 +50,7 @@ export default function Detail() {
       key: "size",
       value: (size).toString()
     });
+    sethandleError(false)
   };
 
   const handleSelectColor = (color:any) => {
@@ -55,6 +58,7 @@ export default function Detail() {
       key: "color",
       value:color
     });
+    sethandleError(false)
   };
   
   const handleChangeQuantity = (qty: number) => {
@@ -79,21 +83,36 @@ export default function Detail() {
     window.scrollTo(0,0)
   }, [id])
 
+  function handleCartValidation(){
+    const color = !!(productInfos?.properties?.color?.length && !selectedColor?.value)
+    const size = !!(productInfos?.properties?.size?.length && !selectedSize?.value)
+    if(color || size || !selectedShippingInfo?.id) {
+      return false;
+    } else {
+      return true;
+    }
+  }
+
   const handleAddProductToCart = async() => {
-    if(!!user && !!token) {
-      const data: addProductProps = {
-        id:  Number(id),
-        quantity: qty,
-        selectedSize: selectedSize,
-        selectedColor: selectedColor,
-        selectedShippingInfo:Number(selectedShippingInfo?.id)
-      }
-      const response: any = await addToCart(data);
-      if(response !== "error") {
-        setOpenSimpleModal(true)
+    if(handleCartValidation()) {
+      sethandleError(false)
+      if(!!user && !!token) {
+        const data: addProductProps = {
+          id:  Number(id),
+          quantity: qty,
+          selectedSize: selectedSize,
+          selectedColor: selectedColor,
+          selectedShippingInfo:Number(selectedShippingInfo?.id)
+        }
+        const response: any = await addToCart(data);
+        if(response !== "error") {
+          setOpenSimpleModal(true)
+        }
+      } else {
+        navigate({pathname: "/login"}, {state: location.pathname});
       }
     } else {
-      navigate({pathname: "/login"}, {state: location.pathname});
+      sethandleError(true)
     }
   }
 
@@ -146,23 +165,25 @@ export default function Detail() {
               </div>
 
             </div>
-            <section style={{
-                // border: selectedColor.value &&  '2px solid #fff5f5',
-                // backgroundColor: selectedColor.value ? '#fff5f5' : '',
-                // box: 'shake',
+            <section className='selected_section' style={{
+                backgroundColor: handleError ? '#fff5f5' : '',
                 marginTop:'8px'
               }}>
-              {/* <div className="colores_container shake"> */}
-              <div className="colores_container">
+              <div className={`colores_container ${handleError && !selectedColor.value ? 'shake' : ''}` }>
                 <ColorComponent colors={productInfos?.properties.color}  selectedColor={selectedColor.value} onSelectColor={handleSelectColor} />
               </div>
-              <div className="sizes_container">
+              <div className={`sizes_container  ${handleError && !selectedSize.value ? 'shake' : ''}`}>
                   <SizeComponent sizes={productInfos?.properties.size} selectedSize={selectedSize.value} onSelectSize={handleSelectSize} />
               </div>
 
-              <div className="shipment_infos">
+              <div className={`shipment_infos  ${handleError && !selectedShippingInfo.id ? 'shake' : ''}`}>
               <ShipmentInfos shippingInfos={productInfos?.shipments} onInfoSelect={handleSelectShippingInfo} />
               </div>
+              {
+                handleError ? 
+                  <small className="detail_error_message">Svp, seleksyone {!selectedColor.value || !selectedSize.value? 'Size oubyen koulè' : 'Enfòmasyon pou Livrezon'} pwodui an</small>
+                : ''
+              }
 
             </section>
               <div className='avalaible_countries'>
