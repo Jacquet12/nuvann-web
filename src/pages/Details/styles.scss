@@ -107,6 +107,17 @@
                     margin: 16px 0;
                 }
 
+
+                .selected_section {
+                  color: red;
+                  
+                  .detail_error_message {
+                    text-align: center;
+                    font-size: 16px;
+                    margin-left: 25px;
+                  }
+                }
+
                 .detail_infos_footer {
                     display: flex;
 
