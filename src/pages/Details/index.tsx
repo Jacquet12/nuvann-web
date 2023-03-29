@@ -94,25 +94,26 @@ export default function Detail() {
   }
 
   const handleAddProductToCart = async() => {
-    if(handleCartValidation()) {
-      sethandleError(false)
-      if(!!user && !!token) {
-        const data: addProductProps = {
-          id:  Number(id),
-          quantity: qty,
-          selectedSize: selectedSize,
-          selectedColor: selectedColor,
-          selectedShippingInfo:Number(selectedShippingInfo?.id)
-        }
-        const response: any = await addToCart(data);
-        if(response !== "error") {
-          setOpenSimpleModal(true)
+    if(!!user && !!token) {
+      if(handleCartValidation()) {
+        sethandleError(false)
+          const data: addProductProps = {
+            id:  Number(id),
+            quantity: qty,
+            selectedSize: selectedSize,
+            selectedColor: selectedColor,
+            selectedShippingInfo:Number(selectedShippingInfo?.id)
+          }
+          const response: any = await addToCart(data);
+          if(response !== "error") {
+            setOpenSimpleModal(true)
+          }
+        } else {
+          sethandleError(true)
         }
       } else {
-        navigate({pathname: "/login"}, {state: location.pathname});
-      }
-    } else {
-      sethandleError(true)
+      navigate({pathname: "/login"}, {state: location.pathname});
+
     }
   }
 
