@@ -26,7 +26,6 @@ const PromotionsContext = createContext<PromotionsContextProps>({
 export const usePromotions = () => useContext(PromotionsContext);
 
 // Provider
-
 const PromotionsProvider: React.FC<PromotionsProviderProps> = ({ children }) => {
   const [promotions, setPromotions] = useState<Promotions[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
@@ -35,7 +34,6 @@ const PromotionsProvider: React.FC<PromotionsProviderProps> = ({ children }) => 
     setLoading(true);
     try {
       const response = await nuvannApi.get("/promotions");
-      console.log(response.data)
       setPromotions(response.data.info);
     } catch (error: any) {
       console.log({error: error.message});
