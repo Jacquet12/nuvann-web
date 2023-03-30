@@ -3,11 +3,17 @@ import { nuvannApi } from '../services/apiRequest';
 import { useToast } from './useToast';
 
 
+interface subTotalProps {
+  discountPercent: number,
+  formattes: string,
+  raw: string
+}
 interface Product {
     id: number;
     name: string;
     price: number;
     image: string;
+    subtotal: subTotalProps;
 }
 
 type sizeProps ={
@@ -30,6 +36,7 @@ export interface addProductProps {
 type CartContextType = {
   cart: Product[];
   cartTotal: number;
+  subtotal:subTotalProps[];
   addToCart: (product:any) => void;
   removeFromCart: (index: number) => void;
   handleGetCart: () => void;
@@ -40,6 +47,7 @@ type CartContextType = {
 
 const CartContext = createContext<CartContextType>({
   loading:false,
+  subtotal: [],
   cart: [],
   cartCount: 0,
   cartTotal: 0,
