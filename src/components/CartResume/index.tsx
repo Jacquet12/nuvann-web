@@ -5,10 +5,13 @@ import './styles.scss'
 
 interface CartResumeProps {
 count: number;
-cartTotal?: number
+cartTotal?: number,
+shipTotal:string,
+productSubtotal: string,
+OnclickContinue: ()=> void;
 }
 
-const CartResume: React.FC<CartResumeProps> =({count, cartTotal = 0}) =>{
+const CartResume: React.FC<CartResumeProps> =({count, cartTotal = 0, shipTotal=0, productSubtotal = 0, OnclickContinue}) =>{
 
   return (
     <div className="card_resume">
@@ -17,13 +20,13 @@ const CartResume: React.FC<CartResumeProps> =({count, cartTotal = 0}) =>{
       <div className="content">
         <div className="resume_separated_info">
           <p>Total Pwodui ({count})</p>
-          <h5>1400</h5>
+          <h5>{productSubtotal}</h5>
         </div>
         <hr />
 
         <div className="resume_separated_info">
           <p>Livrezon</p>
-          <h5>1400</h5>
+          <h5>{shipTotal}</h5>
         </div>
         <hr />
 
@@ -40,7 +43,7 @@ const CartResume: React.FC<CartResumeProps> =({count, cartTotal = 0}) =>{
         <CustomButton backgroundColor ='#00C02A' textColor="#fff">
           Kontinye
         </CustomButton>
-        <CustomButton backgroundColor ='#001A5C' textColor="#fff">
+        <CustomButton backgroundColor ='#001A5C' textColor="#fff" onClick={OnclickContinue}>
           Kontinye Achte
         </CustomButton>
       </div>

@@ -1,6 +1,6 @@
 import { Breadcrumbs, Typography } from '@mui/material'
 import React from 'react'
-import { Link, useLocation } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import CartCard from '../../components/CartCard'
 import CartResume from '../../components/CartResume'
 import { PageDefault } from '../../components/PageDefault'
@@ -8,10 +8,12 @@ import { useCart } from '../../context/cartContext'
 import './styles.scss'
 
 export const Cart = () => {
-  const location =useLocation();
-  const {cartCount, cart} = useCart();
-  console.log(cart)
+  const navigate = useNavigate();
+  const {cartCount, cart, total, shipmentSubtotal,productSubtotal} = useCart();
 
+  const handleContinue = () => {
+    navigate('/')
+  }
   return (
     <PageDefault>
       <div className="cart_container">
@@ -39,7 +41,11 @@ export const Cart = () => {
           </div>
           
             <div className="">
-              <CartResume count={cartCount}/>
+              <CartResume
+                OnclickContinue={handleContinue}
+               count={cartCount}
+               cartTotal={total}
+               shipTotal={shipmentSubtotal.formatted} productSubtotal={productSubtotal.formatted}/>
             </div>
       </div>
     </PageDefault>
