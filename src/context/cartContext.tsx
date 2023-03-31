@@ -35,13 +35,15 @@ export interface addProductProps {
 
 type CartContextType = {
   cart: Product[];
-  cartTotal: number;
   subtotal:subTotalProps[];
   addToCart: (product:any) => void;
   removeFromCart: (index: number) => void;
   handleGetCart: () => void;
   cartCount: number,
-  loading: boolean
+  loading: boolean,
+  productSubtotal: any,
+  shipmentSubtotal:any,
+  total:number
   
 };
 
@@ -50,10 +52,12 @@ const CartContext = createContext<CartContextType>({
   subtotal: [],
   cart: [],
   cartCount: 0,
-  cartTotal: 0,
   addToCart: (data:any) => {},
   removeFromCart: () => {},
   handleGetCart: () => {},
+  productSubtotal: {},
+  shipmentSubtotal:{},
+  total: 0
 });
 
 
@@ -62,6 +66,10 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
   const [loading, setLoading] = useState<Boolean>(false);
   const [cart, setCart] = useState<Product[]>([]);
   const [cartCount, setcartCount] = useState<number>(0);
+  const [productSubtotal, setProductSubtotal] = useState();
+  const [shipmentSubtotal, setShipmentSubtotal] = useState();
+  const [total, setTotal] = useState<number>(0);
+  
 
 
 
@@ -70,6 +78,9 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
           const {data} = await nuvannApi.get("/carts")
           setCart(data.info.items);
           setcartCount(data.info.count)
+          setProductSubtotal(data.info.productSubtotal)
+          setShipmentSubtotal(data.info.shipmentSubtotal)
+          setTotal(data.info.total)
           
       } catch (error) {
           
@@ -112,16 +123,16 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
     setCart(newCart);
   };
 
-  // const cartTotal = cart?.reduce((acc, item) => acc + item.price, 0) || 0;
-  const cartTotal = 0;
   const  value: any= {
     loading,
     cartCount,
     cart,
-    cartTotal,
     addToCart,
     removeFromCart,
-    handleGetCart 
+    handleGetCart,
+    productSubtotal,
+    shipmentSubtotal,
+    total
   }
 
   return (
