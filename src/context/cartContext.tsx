@@ -53,7 +53,7 @@ const CartContext = createContext<CartContextType>({
   cart: [],
   cartCount: 0,
   addToCart: (data:any) => {},
-  removeFromCart: () => {},
+  removeFromCart: (id:number) => {},
   handleGetCart: () => {},
   productSubtotal: {},
   shipmentSubtotal:{},
@@ -117,10 +117,12 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
     }
   };
 
-  const removeFromCart = (index: number) => {
-    const newCart = [...cart];
-    newCart.splice(index, 1);
-    setCart(newCart);
+  const removeFromCart:any = async (index: any) => {
+    try {
+      
+    } catch (error) {
+      
+    }
   };
 
   const  value: any= {
