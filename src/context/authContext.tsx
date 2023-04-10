@@ -82,7 +82,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       // successToast(response.data.message);
       localStorage.setItem('@nuvann:token', access_token);
       localStorage.setItem('@nuvann:user', JSON.stringify(user_info));
-      navigate(location.state?.from || location.state);
+      navigate(location.state || '/');
       setData({
         user : user_info,
         token: access_token
