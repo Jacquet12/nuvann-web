@@ -39,7 +39,7 @@ export const Cart = () => {
             <CartCard items={cart}/>
           </div>
           
-            <div className="">
+            <div className="card_resume_fixed">
               <CartResume
                 OnclickContinue={handleContinue}
                count={cartCount}

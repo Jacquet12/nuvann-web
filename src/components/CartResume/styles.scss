@@ -10,6 +10,8 @@
     flex-direction: column;
     justify-content: space-between;
 
+    position: sticky;
+    top: 0;
     .resume_title {
         text-align: center;
     }
