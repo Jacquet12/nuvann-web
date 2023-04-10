@@ -29,7 +29,7 @@ const CartCard: React.FC<CartCardProps> = ({items}) => {
 
   function decrementButton(index:number): void {
     let newCart = [...items]
-    let proQty = items[index].quantity
+    let proQty = items[index].quantity - 1
     const proAmount = items[index].product.availableAmount
     const p_id =items[index].id
     if(proAmount <proQty) {
@@ -38,6 +38,7 @@ const CartCard: React.FC<CartCardProps> = ({items}) => {
       setErrorMessage('')
       items[index].quantity--
       setCart(newCart)
+
       updateCart(p_id, proQty)
     }
   }

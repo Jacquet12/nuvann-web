@@ -77,6 +77,7 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
 
 
   const handleGetCart = async () => {
+    setLoading(true)
       try {
           const {data} = await nuvannApi.get("/carts")
           setCart(data.info.items);
@@ -85,6 +86,7 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
           setShipmentSubtotal(data.info.shipmentSubtotal)
           setTotal(data.info.total)
       } catch (error) {}
+      setLoading(false)
   }
 
   const addToCart = async (data:any) => {
@@ -119,8 +121,8 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
 
   const removeFromCart:any = async (id: number) => {
     try {
-      const newCart = cart.filter(cart=>cart.id !== id)
-      setCart(newCart);
+      // const newCart = cart.filter(cart=>cart.id !== id)
+      // setCart(newCart);
       await nuvannApi.delete(`/carts/${id}`)
     } catch (error:any) {
       const message: string = error.response.data.message

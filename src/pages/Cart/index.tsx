@@ -5,10 +5,11 @@ import CartResume from '../../components/CartResume'
 import { PageDefault } from '../../components/PageDefault'
 import { useCart } from '../../context/cartContext'
 import './styles.scss'
+import CustomSkeleton from '../../components/CustomSkeleton'
 
 export const Cart = () => {
   const navigate = useNavigate();
-  const {cartCount, cart, total, shipmentSubtotal,productSubtotal} = useCart();
+  const {cartCount, cart, total, shipmentSubtotal,productSubtotal, loading} = useCart();
 
   const handleContinue = () => {
     navigate('/')
@@ -36,7 +37,14 @@ export const Cart = () => {
               </div>
             </div>
 
-            <CartCard items={cart}/>
+            {
+              loading ? (
+                <CustomSkeleton />
+              ) : (
+                <CartCard items={cart}/>
+              )
+            }
+
           </div>
           
             <div className="card_resume_fixed">
