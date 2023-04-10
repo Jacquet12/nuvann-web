@@ -35,26 +35,29 @@ export interface addProductProps {
 
 type CartContextType = {
   cart: Product[];
+  setCart:any;
   subtotal:subTotalProps[];
   addToCart: (product:any) => void;
   removeFromCart: (index: number) => void;
   handleGetCart: () => void;
-  cartCount: number,
-  loading: boolean,
-  productSubtotal: any,
-  shipmentSubtotal:any,
-  total:number
-  
+  updateCart: (id:number, quantity:number)=>void;
+  cartCount: number;
+  loading: boolean;
+  productSubtotal: any;
+  shipmentSubtotal:any;
+  total:number;
 };
 
 const CartContext = createContext<CartContextType>({
   loading:false,
   subtotal: [],
   cart: [],
+  setCart:[],
   cartCount: 0,
   addToCart: (data:any) => {},
   removeFromCart: (id:number) => {},
   handleGetCart: () => {},
+  updateCart: (id:number, quantity:number)=>{},
   productSubtotal: {},
   shipmentSubtotal:{},
   total: 0
@@ -81,10 +84,7 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
           setProductSubtotal(data.info.productSubtotal)
           setShipmentSubtotal(data.info.shipmentSubtotal)
           setTotal(data.info.total)
-          
-      } catch (error) {
-          
-      }
+      } catch (error) {}
   }
 
   const addToCart = async (data:any) => {
@@ -118,7 +118,6 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
   };
 
   const removeFromCart:any = async (id: number) => {
-    
     try {
       const newCart = cart.filter(cart=>cart.id !== id)
       setCart(newCart);
@@ -131,16 +130,31 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
     }
   };
 
+  const updateCart = async (id:number, quantity: number) => {
+    try {
+      await nuvannApi.put(`/carts/${id}`,{
+        quantity
+      })
+    } catch (error:any) {
+      const message: string = error.response.data.message
+      errorToast(message)
+    } finally{
+      handleGetCart();
+    }
+  }
+
   const  value: any= {
     loading,
     cartCount,
     cart,
+    total,
+    setCart,
+    shipmentSubtotal,
+    productSubtotal,
     addToCart,
     removeFromCart,
     handleGetCart,
-    productSubtotal,
-    shipmentSubtotal,
-    total
+    updateCart,
   }
 
   return (
