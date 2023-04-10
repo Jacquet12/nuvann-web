@@ -191,7 +191,7 @@ export default function Detail() {
 
               <div className="input_quantity_container">
                 <InputQuantity
-                total={productInfos?.availableAmount}
+                  total={productInfos?.availableAmount}
                   label='Kantite'
                   onChange={handleChangeQuantity} 
                   value={qty}
