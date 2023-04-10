@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useCart } from '../../context/cartContext'
 import {MdDelete} from 'react-icons/md'
 import './styles.scss'
@@ -9,7 +9,38 @@ interface CartCardProps {
 
 }
 const CartCard: React.FC<CartCardProps> = ({items}) => {
-  const {removeFromCart} = useCart();
+  const {removeFromCart, setCart, updateCart} = useCart();
+  const [errorMessage, setErrorMessage] = useState('')
+
+  function incrementButton(index: number): void {
+    let newCart = [...items]
+    let proQty = items[index].quantity + 1
+    const proAmount = items[index].product.availableAmount
+    const p_id =items[index].id
+    if(proAmount <proQty) {
+      setErrorMessage(`kantite maksimòm: ${proAmount}`)
+    } else {
+      setErrorMessage('')
+      items[index].quantity++
+      setCart(newCart)
+      updateCart(p_id, proQty)
+    }
+  }
+
+  function decrementButton(index:number): void {
+    let newCart = [...items]
+    let proQty = items[index].quantity
+    const proAmount = items[index].product.availableAmount
+    const p_id =items[index].id
+    if(proAmount <proQty) {
+      setErrorMessage(`kantite maksimòm: ${proAmount}`)
+    } else {
+      setErrorMessage('')
+      items[index].quantity--
+      setCart(newCart)
+      updateCart(p_id, proQty)
+    }
+  }
 
   return (
     <>
@@ -44,17 +75,17 @@ const CartCard: React.FC<CartCardProps> = ({items}) => {
           </div>
         </div>
         <div className='content_icon_delete'>
-          <MdDelete color='red' size={22}  onClick={ ()=> removeFromCart(Number(item.id))}/>
+          <MdDelete color='red' size={22}  onClick={()=> removeFromCart(Number(item.id))}/>
         </div>
       </div>
       <hr />
       <div className="cart_card_footer">
         <div className="cart_card_quantity">
-          <InputQuantity value={item?.quantity} label="kantite" decrement={function (): void {
-                throw new Error('Function not implemented.')
-              } } increment={function (): void {
-                throw new Error('Function not implemented.')
-              } } />
+          <InputQuantity
+            value={item?.quantity}
+            label="kantite"
+            increment={()=> incrementButton(index)}
+            decrement={()=>decrementButton(index)}/>
         </div>
 
         <div className="cart_card_total">

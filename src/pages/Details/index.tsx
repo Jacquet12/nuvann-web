@@ -62,10 +62,7 @@ export default function Detail() {
   };
   
   const handleChangeQuantity = (qty: number) => {
-    
     setQty(Number(qty));
-    // console.log(productInfos?.properties.color.length)
-    // console.log(productInfos?.properties.size.length)
   }
 
   const handleIncrement = () =>{
