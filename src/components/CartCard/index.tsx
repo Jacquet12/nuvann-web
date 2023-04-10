@@ -43,8 +43,7 @@ const CartCard: React.FC<CartCardProps> = ({items}) => {
             <span>{item.properties?.length >0 ? item?.properties[0]?.value : ''}</span>
           </div>
         </div>
-        <div className=''>
-       
+        <div className='content_icon_delete'>
           <MdDelete color='red' size={22}  onClick={ ()=> removeFromCart(Number(item.id))}/>
         </div>
       </div>

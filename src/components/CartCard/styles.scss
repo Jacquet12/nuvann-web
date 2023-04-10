@@ -40,7 +40,7 @@
             .content_desc {
                 margin-top: 8px;
                 display: grid;
-                grid-template-columns: 100px 150px;
+                grid-template-columns: 80px 150px;
 
                 p {
                     font-family: 'Roboto';
@@ -72,10 +72,12 @@
             }
         }
 
-
-        i{
-            border: 1px solid red;
+        .content_icon_delete {
+            svg{
+                cursor: pointer;
+            }
         }
+
     }
 
     .cart_card_footer {
