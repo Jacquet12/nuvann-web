@@ -117,11 +117,17 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
     }
   };
 
-  const removeFromCart:any = async (index: any) => {
+  const removeFromCart:any = async (id: number) => {
+    
     try {
-      
-    } catch (error) {
-      
+      const newCart = cart.filter(cart=>cart.id !== id)
+      setCart(newCart);
+      await nuvannApi.delete(`/carts/${id}`)
+    } catch (error:any) {
+      const message: string = error.response.data.message
+      errorToast(message)
+    } finally {
+      handleGetCart();
     }
   };
 
