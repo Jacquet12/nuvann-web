@@ -18,6 +18,15 @@ interface SkeletonProps {
           <Skeleton variant={variant} width={width} height={height} animation={animation}  />
         </CardContent>
       </Card>
+
+
+      <Card>
+        <CardMedia component={Skeleton} variant="rectangular" height={200} />
+        <CardContent>
+          <Skeleton variant={variant} width={width} height={height} animation={animation} style={{ marginBottom: 12 }}  />
+          <Skeleton variant={variant} width={width} height={height} animation={animation}  />
+        </CardContent>
+      </Card>
       </>
     );
   };

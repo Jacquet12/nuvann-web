@@ -34,7 +34,7 @@ const CartCard: React.FC<CartCardProps> = ({items}) => {
     const p_id =items[index].id
     if(proAmount <proQty) {
       setErrorMessage(`kantite maksimòm: ${proAmount}`)
-    } else {
+    } else if(proQty>=1) {
       setErrorMessage('')
       items[index].quantity--
       setCart(newCart)
