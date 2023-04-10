@@ -18,7 +18,7 @@ const CustomSlider: React.FC<SliderProps> = ({ slides, title, itemToShow }) => {
     dots: false,
     infinite: false,
     speed: 500,
-    slidesToShow: 4,
+    slidesToShow: itemToShow,
     slidesToScroll: 4,
     initialSlide: 0,
     responsive: [

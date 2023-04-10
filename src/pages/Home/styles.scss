@@ -4,4 +4,12 @@
     justify-content: center;
     flex-direction: column;
     overflow: hidden;
+
+    .home_section_card {
+        width: 100%;
+        background-color: var(--background-white);
+        margin: 16px 0;
+        padding: 1% 30px;
+        height: 100%;
+    }
 }

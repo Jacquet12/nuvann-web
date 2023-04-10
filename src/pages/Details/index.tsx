@@ -219,7 +219,7 @@ export default function Detail() {
       </div>
 
       <div className="detail_sameCategory_card">
-        <CustomSlider title='Wap Renmen' slides={productInfos?.relatedProducts} itemToShow={5}/>
+        <CustomSlider title='Wap Renmen' slides={productInfos?.relatedProducts} itemToShow={4}/>
       </div >
 
       <div className="detail_full_description_card">

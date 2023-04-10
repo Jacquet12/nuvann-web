@@ -4,7 +4,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import './styles.scss'
 import Title from "../Title";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 interface SliderProps {
   slides: any;
@@ -13,7 +13,8 @@ interface SliderProps {
 }
 
 const ProductSlide: React.FC<SliderProps> = ({ slides, title, itemToShow }) => {
-  const settings = {
+  const navigate = useNavigate();
+  var settings = {
     dots: false,
     infinite: false,
     speed: 500,
@@ -24,28 +25,25 @@ const ProductSlide: React.FC<SliderProps> = ({ slides, title, itemToShow }) => {
       {
         breakpoint: 1024,
         settings: {
-          slidesToShow: 4,
+          slidesToShow: 3,
           slidesToScroll: 3,
           infinite: true,
-          dots: true
+          dots: false
         }
       },
       {
         breakpoint: 600,
         settings: {
           slidesToShow: 2,
-          initialSlide: 0
+          slidesToScroll: 2,
+          initialSlide: 2
         }
       },
       {
-        breakpoint: 570,
+        breakpoint: 480,
         settings: {
-          infinite:true,
-          speed: 250,
-          slidesToShow: 2,
-          initialSlide: 0,
-          dots: true,
-          arrows: false
+          slidesToShow: 1,
+          slidesToScroll: 1
         }
       }
     ]
@@ -53,28 +51,34 @@ const ProductSlide: React.FC<SliderProps> = ({ slides, title, itemToShow }) => {
 
 
   return (
-    <section className="new_product_section">
+    <section className="custom_slide_section">
       <Title title={title} />
       <Slider {...settings}>
-        {slides.map((product: any, index: any) => (
-          <div className="product-grid3" key={product.id}>
-            <div className="product-image3">
-                <Link to={`/products/${product.id}`}>
-                  {
-                    product?.images?.slice(0, 2).map((img: string, index:number) =>(
-                      <img key={index} className={`pic-${index + 1}`} src={img} alt={product.name}/>
-                    ))
-                  }
-                </Link>
-                {/* <span className="product-new-label">New</span> */}
-            </div>
-            <div className="product-content">
-              <h3 className="title"> {(product.name && product.name.length > 25) ? product.name.substring(0,25)+'...' : product.name}</h3>
-              <span className="lastprice">de {product.prices.before.formatted}</span>
-              <h3 className="price">{product.prices.current.formatted} <span>{product.prices.current.discountPercent} %</span></h3>
-              <h3 className="description"> {(product.description && product.description.length > 50) ? product.description.substring(0,50)+'...' : product.description}</h3>
-            </div>
+        {slides?.slice(0,8).map((product: any, index: any) => (
+        <div className="card_home" key={product.id} onClick={()=>{navigate(`/products/${product.id}`)}}>
+          <div className="product_img">
+            <img src={product.images[0]} alt="" />
+            <img src={product.images[1]} className="show-hover" alt="" />
           </div>
+          <div className="bottom">
+          <h2>
+            {(product.name && product.name.length > 15) ? product.name.substring(0, 15)+'...' : product.name}
+          </h2>
+            <p className='daily_deal'>Related</p>
+            <p>
+              <i>de <span className="lastprice"> {product.prices.before.formatted}</span></i>
+            </p>
+            <p className="currentPrice">{product.prices.current.formatted}
+            {
+              product.prices.current.discountPercent &&
+              <span>{product.prices.current.discountPercent} %</span>
+            }
+            </p>
+            {/* <p className='description'>
+              {(product.name && product.name.length > 80) ? product.name.substring(0, 80)+'...' : product.name}
+            </p>   */}
+          </div>
+        </div>
         ))}
       </Slider>
     </section>
