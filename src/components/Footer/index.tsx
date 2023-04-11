@@ -3,12 +3,32 @@ import { AiOutlineUser, AiOutlineShoppingCart, AiOutlineLogout } from 'react-ico
 import {FaMapMarkerAlt, FaPhoneAlt, FaEnvelope} from 'react-icons/fa';
 import './styles.scss'
 
+import visaIcon from '../../assets/card/visa.svg'
+import masterCard from '../../assets/card/mastercard.svg'
+import paypal from '../../assets/card/paypal.svg'
+import elo from '../../assets/card/elo.svg'
+import visacheckout from '../../assets/card/visacheckout.svg'
+import amex from '../../assets/card/amex.svg'
+import boleto from '../../assets/card/boleto.svg'
+
 export const Footer = () => {
 
   const today = new Date();
   const year = today.getFullYear();
   return (
     <div className="footer_principal_container">
+        <div className="footer_principal_cards">
+          <img src={visaIcon} alt={visaIcon}/>
+          <img src={masterCard} alt={masterCard}/>
+          <img src={paypal} alt={paypal}/>
+          <img src={elo} alt={elo}/>
+          <img src={visacheckout} alt={visacheckout}/>
+          <img src={amex} alt={amex}/>
+          <img src={boleto} alt={boleto}/>
+        </div>
+        <div className="footer_separate">
+          <hr />
+        </div>
         <div className="footer_details">
           <div>
             <h2>Kontakte nou</h2>
@@ -45,6 +65,7 @@ export const Footer = () => {
             <p> Komanw ka fè yon reklamasyon  </p>
             <p>Komanw kapab Vann </p>
           </div>
+
           <div>
             <h2>Espas Kliyan</h2>
 
@@ -53,7 +74,6 @@ export const Footer = () => {
             <p><span> <AiOutlineLogout /> </span> Dekonekte</p>
           </div>
         </div>
-        <hr className="footer_separator"/>
         <div className="footer_signature">
             <span>Copyright © {year} - Nuvann webStore | All rights reserved.</span>
         </div>

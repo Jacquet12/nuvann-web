@@ -31,27 +31,27 @@ export default function Home(){
     },
     {
       title: "Enfòmatik",
-      appearence: "https://loremflickr.com/800/600/Garden_centers?random=650"
+      appearence: "https://loremflickr.com/800/600/Computer_stores?random=155"
     },
     {
       title: "Alimantè",
-      appearence: "https://loremflickr.com/800/600/Garden_centers?random=650"
+      appearence: "https://loremflickr.com/800/600/Liquor_stores?random=125"
     },
     {
       title: "Maskilen",
-      appearence: "https://loremflickr.com/800/600/Garden_centers?random=650"
+      appearence: "https://loremflickr.com/800/600/Liquor_stores?random=125"
     },
     {
       title: "Feminen",
-      appearence: "https://loremflickr.com/800/600/Garden_centers?random=650"
+      appearence: "https://loremflickr.com/800/600/Men's_clothing_stores?random=780"
     },
     {
       title: "Feminen",
-      appearence: "https://loremflickr.com/800/600/Garden_centers?random=650"
+      appearence: "https://loremflickr.com/800/600/Farmers_markets?random=475"
     },
     {
       title: "Feminen",
-      appearence: "https://loremflickr.com/800/600/Garden_centers?random=650"
+      appearence: "https://loremflickr.com/800/600/Farmers_markets?random=486"
     }
   ]
   return (
