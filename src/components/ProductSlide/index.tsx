@@ -54,7 +54,7 @@ const ProductSlide: React.FC<SliderProps> = ({ slides, title, itemToShow }) => {
     <section className="custom_slide_section">
       <Title title={title} />
       <Slider {...settings}>
-        {slides?.slice(0,8).map((product: any, index: any) => (
+        {slides?.slice(0,15).map((product: any, index: any) => (
         <div className="card_home" key={product.id} onClick={()=>{navigate(`/products/${product.id}`)}}>
           <div className="product_img">
             <img src={product.images[0]} alt="" />

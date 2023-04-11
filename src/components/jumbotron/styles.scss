@@ -1,0 +1,24 @@
+.home_jumbotron {
+    height: 200px;
+    background-color: var(--background-white);
+    margin: 15px 0 0 0;
+
+    display: flex;
+    justify-content: space-around;
+    align-items:center;
+
+    h3 {
+        padding-top: 15px;
+        text-align: center;
+        line-height: 1.25;
+        color: rgb(64, 64, 64);
+    }
+
+    .jumbotron_content {
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+}
