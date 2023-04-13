@@ -151,9 +151,9 @@ export const Navbar: React.FC = () => {
         </div>
         <nav className="navbar_list">
             <ul>
-                <Link to="/">Prensipal</Link>
+                <Link to="/">Akèy</Link>
                 <Link to="/promotion">
-                  Pwomotion
+                  Pwomosyon
                   </Link>
                 <Link to="/categories">Kategori ..</Link>
                 <Link to="/seller">Vann</Link>

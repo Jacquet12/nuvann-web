@@ -1,16 +1,13 @@
 .home_category_random {
-    min-height: 250px;
-    // border-radius: 5px;
     transition: 0.1s ease-in-out;
     overflow: hidden;
-    padding: 0 6px;
-
+    padding: 8px 3px;
     display: flex;
     justify-content: space-between;
-    gap: 0 15px;
+    gap: 0 5px;
 
     img {
-        width: 100%;
+        width: 32%;
         cursor: pointer;
     }
 }
