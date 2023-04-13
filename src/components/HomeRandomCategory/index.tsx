@@ -36,7 +36,7 @@ const HomeRandomCategory: React.FC = () => {
 
       const getRandomObject = () => {
         const randomIndices: number[] = [];
-        while (randomIndices.length < 2) {
+        while (randomIndices.length < 3) {
           const randomIndex = Math.floor(Math.random() * myArray.length);
           if (!randomIndices.includes(randomIndex)) {
             randomIndices.push(randomIndex);
