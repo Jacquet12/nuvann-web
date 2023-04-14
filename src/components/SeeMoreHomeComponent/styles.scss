@@ -1,7 +1,7 @@
 .see_more_Title {
   text-align: center;
   list-style: none;
-  margin: 0;
+  margin: 0 20px;
   padding: 18px;
   border-bottom: 3px solid var(--blue-principal-000052);
   color: var(--blue-principal-000052);
@@ -139,6 +139,12 @@
     
       }
       
+  }
+
+  .see_more_button {
+    display: flex;
+    justify-content: center;
+    margin: 16px 0;
   }
   }
   

@@ -65,11 +65,11 @@ export default function Home(){
             <ProductSlide itemToShow={4}  slides={products} title="Nouvo Produi"/>
           </div>
 
-            <HomeRandomCategory/>
 
           <div className="home_section_card">
             <ProductSlide itemToShow={4}  slides={products} title="Likidasyon pou Mwa an"/>
           </div>
+            <HomeRandomCategory/>
             <SeeMoreHomeComponent data={products} />
         </div>
 

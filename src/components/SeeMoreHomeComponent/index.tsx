@@ -40,8 +40,10 @@ const SeeMoreHomeComponent: React.FC <SeeMoreProps>  = ({data}) => {
                 </div>
             </div>
         ))}
+      </div>
+    <div className="see_more_button">
+      <CustomButton variant="outlined" textColor='#000052' width={250}>See more</CustomButton>
     </div>
-    <CustomButton title='See more' />
     </section>
   )
 }

@@ -6,10 +6,13 @@ import { PageDefault } from '../../components/PageDefault'
 import { useCart } from '../../context/cartContext'
 import './styles.scss'
 import CustomSkeleton from '../../components/CustomSkeleton'
+import CustomSlider from '../../components/customSlider'
+import { useProduct } from '../../context/productContext'
 
 export const Cart = () => {
   const navigate = useNavigate();
   const {cartCount, cart, total, shipmentSubtotal,productSubtotal, loading} = useCart();
+  const {productInfos, getProductInfos} =useProduct();
 
   const handleContinue = () => {
     navigate('/')
@@ -21,27 +24,18 @@ export const Cart = () => {
           <div className="cart_container_card">
             <div className="card_title">
               <h3>Nuvann Panye</h3>
-              <div>
-              {/* <Breadcrumbs aria-label="breadcrumb">
-                <Link color="inherit" to="/">
-                  MUI
-                </Link>
-                <Link
-                  color="inherit"
-                  to="/material-ui/getting-started/installation/"
-                >
-                  Core
-                </Link>
-                <Typography color="text.primary">Breadcrumbs</Typography>
-              </Breadcrumbs> */}
-              </div>
             </div>
 
             {
               loading ? (
                 <CustomSkeleton />
               ) : (
+                <>
                 <CartCard items={cart}/>
+                {/* <div className="detail_sameCategory_card">
+                  <CustomSlider title='Wap Renmen' slides={productInfos?.relatedProducts} itemToShow={4}/>
+                </div > */}
+                </>
               )
             }
 
@@ -52,7 +46,8 @@ export const Cart = () => {
                 OnclickContinue={handleContinue}
                count={cartCount}
                cartTotal={total}
-               shipTotal={shipmentSubtotal?.formatted} productSubtotal={productSubtotal?.formatted}/>
+               shipTotal={shipmentSubtotal?.formatted} productSubtotal={productSubtotal?.formatted}
+               />
             </div>
       </div>
     </PageDefault>
