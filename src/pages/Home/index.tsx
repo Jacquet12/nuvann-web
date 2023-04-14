@@ -9,6 +9,7 @@ import slide2 from '../../assets/slide2.svg'
 import CustomSlider from '../../components/customSlider';
 import Jumbotron from '../../components/jumbotron';
 import HomeRandomCategory from '../../components/HomeRandomCategory';
+import SeeMoreHomeComponent from '../../components/SeeMoreHomeComponent';
 
 export default function Home(){
   const {products, getProducts} = useProduct();
@@ -69,6 +70,7 @@ export default function Home(){
           <div className="home_section_card">
             <ProductSlide itemToShow={4}  slides={products} title="Likidasyon pou Mwa an"/>
           </div>
+            <SeeMoreHomeComponent data={products} />
         </div>
 
       </PageDefault>
