@@ -15,6 +15,7 @@ interface seeMoreArray  {
 
 const SeeMoreHomeComponent: React.FC <SeeMoreProps>  = ({data}) => {
     const navigate = useNavigate();
+
   return (
     <section className="see_more_container">
       <h3 className='see_more_Title'>Ann Gade</h3>
@@ -22,8 +23,8 @@ const SeeMoreHomeComponent: React.FC <SeeMoreProps>  = ({data}) => {
         {data.slice(0,36).map((see: any) => (
             <div className="see_more_card" key={see.id} onClick={()=>{navigate(`/products/${see.id}`)}}>
                 <div className="product_img">
-                <img src={see.images[0]} alt="" />
-                <img src={see.images[1]} className="show-hover" alt="" />
+                  <img src={see.images[0]} alt="" />
+                  <img src={see.images[1]} className="show-hover" alt="" />
                 </div>
                 {/* <h2>
                 {(promo.name && promo.name.length > 35) ? promo.name.substring(0, 35)+'...' : promo.name}

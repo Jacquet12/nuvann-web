@@ -10,9 +10,11 @@ interface SliderProps {
   slides: any;
   title: string;
   itemToShow: number;
+  isnew?: boolean,
+  havePromo?:boolean
 }
 
-const ProductSlide: React.FC<SliderProps> = ({ slides, title, itemToShow }) => {
+const ProductSlide: React.FC<SliderProps> = ({ slides, title, itemToShow, isnew = false, havePromo = false }) => {
   const navigate = useNavigate();
   var settings = {
     dots: false,
@@ -60,11 +62,16 @@ const ProductSlide: React.FC<SliderProps> = ({ slides, title, itemToShow }) => {
             <img src={product.images[0]} alt="" />
             <img src={product.images[1]} className="show-hover" alt="" />
           </div>
+          {isnew && (
+            <div className="product-new-label">Nouvote</div>
+          )}
           <div className="bottom">
           <h2>
             {(product.name && product.name.length > 15) ? product.name.substring(0, 15)+'...' : product.name}
           </h2>
-            <p className='daily_deal'>Related</p>
+          {havePromo && (
+            <p className='daily_deal'>promosyon</p>
+          )}
             <p>
               <i>de <span className="lastprice"> {product.prices.before.formatted}</span></i>
             </p>
