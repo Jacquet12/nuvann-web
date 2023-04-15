@@ -62,12 +62,12 @@ export default function Home(){
         <Jumbotron data={jumbArray}/>
         <div className='home_product_container'>
           <div className="home_section_card">
-            <ProductSlide itemToShow={4}  slides={products} title="Nouvo Produi"/>
+            <ProductSlide itemToShow={4}  slides={products} title="Nouvo Produi" isnew={true}/>
           </div>
 
 
           <div className="home_section_card">
-            <ProductSlide itemToShow={4}  slides={products} title="Likidasyon pou Mwa an"/>
+            <ProductSlide itemToShow={4}  slides={products} title="Likidasyon pou Mwa an" havePromo={true}/>
           </div>
             <HomeRandomCategory/>
             <SeeMoreHomeComponent data={products} />
